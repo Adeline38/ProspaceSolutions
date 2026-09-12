@@ -1,0 +1,63 @@
+/* Fonts SF PRO */
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("../fonts/sf-pro-display/sf-pro-display-regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("../fonts/sf-pro-display/sf-pro-display-medium.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("../fonts/sf-pro-display/sf-pro-display-semibold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("../fonts/sf-pro-display/sf-pro-display-bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("../fonts/sf-pro-display/sf-pro-display-heavy.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("../fonts/sf-pro-display/sf-pro-display-black.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+}
+
+body {
+  font-family: "SF Pro Display", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  font-display: swap;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin-top: 0;
+}

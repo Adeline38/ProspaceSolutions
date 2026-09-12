@@ -1,0 +1,324 @@
+/* MENU */
+.header {    
+    display: flex;
+    justify-content: center;
+    /**/
+    box-shadow: 0px 8px 10px -6px rgba(0, 0, 0, 0.1);
+    background-color: rgba(15, 23, 42, 1);
+    background-color: #0F172A; /* bleu-nuit */
+}
+.header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /**/
+    width: 1280px;
+    min-height: 64px;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+.header .logo { 
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.header .logo .prospace-solutions { 
+    /**/
+    font-weight: 900;
+    font-size: 18px;
+    line-height: 28px;
+    /* letter-spacing: -0.89px; */
+    text-align: center;
+    color: #FFFFFF; /* blanc */
+}
+.header .logo .prospace-solutions span span {
+    color: #38BDF8; /* bleu-prospace */
+}
+
+.navigation ul {
+    display: flex;
+    gap: 2px;
+}
+.navigation li a {
+    display: flex;
+    /**/
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    /* letter-spacing: -0.15px; */
+    text-align: center;
+    color: #CAD5E2; /* gris-clair */
+    /**/
+    border-radius: 10px;
+    background-color: transparent;
+    padding: 8px 14px;
+    gap: 8px;
+}
+
+.navigation li a:hover {
+    color: #FFFFFF;
+}
+.navigation li a.active {
+    color: #38BDF8; /* bleu-prospace */
+    /**/
+    background-color: #FFFFFF20; /* blanc-clair */
+}
+.navigation li a {
+    text-decoration: none;
+}
+.navigation li span {
+    color:#FFFFFF;
+    font-weight: bold;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    background-color: #0284C7; /* bleu-moyen */
+}
+
+
+/* HERO BANNER */
+.hero {
+    position:relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /**/
+    width: 100%;
+    min-height: 602px;
+    background-color: #0F172A; /* bleu-nuit */
+}
+.hero__banner { /* image d'arrière plan */
+    /* background: #000000; */
+    background: linear-gradient(to top, #000000 0%, #0F172A 60%);
+    background-image: ('assets\images\banner-prospace-solution.webp');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-origin: border-box;
+}
+
+.hero__container {
+    display: flex;
+    flex-direction: column;
+    /**/
+    width: 80rem; /* 1280px */
+    padding: 112px 24px;
+}
+.hero__container .main {
+    display: flex;
+    flex-direction: column;
+    /**/
+    max-width: 672px;
+}
+
+.hero .etiquette {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    height: 50px;
+}
+
+.hero .location-b2b-en-france {
+    display: flex;
+    width: fit-content;
+    /**/
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 2.4px;
+    text-transform: uppercase;
+    color: #38BDF8; /* bleu-prospace */
+    /**/
+    border-radius: 20px;
+    border: solid 1px #38BDF820;
+    background-color: #38BDF810;
+    padding: 6px 12px;
+    gap: 8px;
+}
+.hero h1 {
+    display: flex;
+    flex-direction: column;
+    /**/
+    font-weight: 800;
+    font-size: 60px;
+    line-height: 66px;
+    letter-spacing: -0.26px;
+    color: #FFFFFF; /* blanc */
+    margin: 0;
+}
+.hero h1 span {
+    color: #38BDF8; /* bleu-prospace */
+    width: fit-content;
+}
+.hero p {
+    display: flex;
+    flex-direction: column;
+    max-width: 512px;
+    /**/
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 30px;
+    /* letter-spacing: -0.44px; */
+    color: #CAD5E2; /* gris-clair */
+    /**/
+    padding-top:20px;
+    margin-bottom: 10px;
+}
+.hero ul {
+    display: flex;
+    width: fit-content;
+    height: 52px;
+    /**/
+    padding-top: 22px;
+    gap: 24px;
+}
+.hero li {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+.hero li span {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    /* letter-spacing: -0.15px; */
+    color: #90A1B9; /* gris-moyen */
+}
+/* MIXIN */
+.icon-svg {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  place-self: center;
+  color: #38BDF8; /* bleu-prospace */
+}
+
+
+/* FILTRE */
+.filtre {
+    display: flex;
+    flex-direction: column;
+    /**/
+    width: 100%;
+    border:solid 1px #E2E8F0; /* gris-filtre */
+    box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 1);
+}
+.filtre__container {    
+    display: flex;
+    max-width: 1280px;
+    /**/
+    padding: 14px 24px;
+    gap: 12px;
+}
+
+.filtre .title {   
+    display: flex;
+    max-width: 1280px;
+    gap: 6px  
+}
+.filtre .title span {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    /* letter-spacing: 0.6px; */
+    text-transform: uppercase;
+    color: #90A1B9; /* gris-moyen */
+}
+/* MIXIN */
+.filtre .title .icon-svg {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+
+    /* On applique la couleur via le background au lieu de le faire avec l'attribut 'fill' */
+    background-color: #38BDF8; /* bleu-prospace */
+
+    /* On utilise le SVG comme un masque (un pochoir) */
+    -webkit-mask-image: url('assets/icons/ico_filtres.svg');
+    mask-image: url('assets/icons/ico_filtres.svg');
+
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+
+    transition: background-color 0.3s ease;
+
+    /* Modifier la couleur au survol devient très simple */
+    /*
+    &:hover {
+    background-color: #FFFFFF; /* color-blanc
+    }
+    */
+}
+.filtre .sep {
+    width: 1px;
+    height: 16px;
+    background-color: #E2E8F0; /* gris-filtre */
+}
+.filtre select {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: auto;
+    /* letter-spacing: -0.15px; */
+    color: #0F172A; /* bleu-nuit */
+    /**/
+    padding: 8px 16px;
+    border-radius: 12px;
+    background-color: #FFFFFF;
+    border: solid 1px #E2E8F0; /* gris-clair-clair */
+}
+.filtre .fieldset {
+    display: flex;
+    gap: 8px;
+}
+.filtre .checkbox {
+    width: 16px;
+    height: 16px;
+    border-radius: 2px;
+    background-color: #FFFFFF;
+    border: solid 1px #767676; /* gris-souris */
+}
+.filtre .checkbox span {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    /* letter-spacing: -0.15px; */
+    color: #45556C; /* gris-ardoise */
+}
+
+
+/* ESPACES DISPONIBLES */
+.espace-dispo {
+    display: flex;
+    flex-direction: column;
+}
+
+
+@media (max-width: 1280px) {
+  .hero__container, .hero__container .main {
+    display: flex;
+    justify-content: center;
+    width: unset;
+    height: unset;
+    padding: 10px;    
+  }
+}
+
+
+@media (max-width: 375px) {
+  .navigation ul, .hero, .hero__container, .main, .hero ul {
+    display: flex;
+    flex-direction: column;
+    width: unset;
+    height: unset;
+    padding: 10px;    
+  }
+  .hero ul, .hero li {
+    padding-bottom: 10px;
+    justify-content: start;
+    gap: 5px;
+  }
+}
