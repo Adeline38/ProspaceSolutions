@@ -5,7 +5,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  border: dotted 1px coral;
+  /* border: dotted 1px coral; */
 }
 
 html {
