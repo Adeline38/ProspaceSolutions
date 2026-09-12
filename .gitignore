@@ -28,10 +28,7 @@ src
 /public/_favicon_io/commit-message.md
 /src/scss/abstract/commit-message.md
 /src/scss/base/commit-message.md
-commit-message.md
 
 
 # Prochain commit ne tient pas compte de :
 /public
-/assets/css
-index.html
