@@ -1,0 +1,38 @@
+# Configuration locale et secrets
+.env
+.env.*
+!.env.example
+
+# Configuration des éditeurs
+.vscode/
+.idea/
+
+# Journaux et fichiers temporaires
+*.log
+*.tmp
+
+# Fichiers générés par le système
+.DS_Store
+Thumbs.db
+
+# Fichiers exclus pour ce projet
+src
+/documents/cours
+/documents/cahier des charges/
+
+assets\css\commit-message.md
+assets\fonts\commit-message.md
+assets\icons\commit-message.md
+assets\images\commit-message.md
+documents\conceptualisation\commit-message.md
+public\_favicon_io\commit-message.md
+src\scss\abstract\commit-message.md
+src\scss\base\commit-message.md
+commit-message.md
+
+
+# Prochain commit ne tient pas compte de :
+
+assets\css
+documents
+public
