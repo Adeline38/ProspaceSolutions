@@ -1,0 +1,75 @@
+/* ================================================= */
+/* === BOUTONS ET LIENS D'ACTION === */
+/* ================================================= */
+
+@use "../abstract/variables" as *;
+@use "../abstract/mixins" as *;
+
+/* Classe générale disponible pour les prochains boutons */
+.btn {
+  @include bouton($couleur-bleu-bouton, $couleur-blanc);
+
+  &:hover {
+    background-color: $couleur-bleu-bouton-hover;
+  }
+
+  &:focus-visible {
+    outline: 3px solid $couleur-bleu-prospace;
+    outline-offset: 3px;
+  }
+
+  &-favoris {
+    @include flex-center;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 2;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: 0;
+    border-radius: $arrondi-rond;
+    background-color: $couleur-blanc-90;
+    color: $couleur-gris-favoris;
+    cursor: pointer;
+    transition: color 0.2s, background-color 0.2s;
+
+    &:hover,
+    &:focus,
+    &[aria-pressed="true"] {
+      background-color: $couleur-rose-favoris;
+      color: $couleur-blanc;
+    }
+  }
+
+}
+
+/* Le parent rend cette règle prioritaire sur les liens génériques du footer */
+.footer__wrapper .btn-footer {
+  @include flex-center(row, flex-start, center, $espace-petit);
+  color: $couleur-bleu-prospace;
+
+  &:hover {
+    color: $couleur-blanc;
+  }
+}
+
+.card-main-link {
+  @include bouton($couleur-bleu-bouton, $couleur-blanc);
+  @include box-shadow(1px, 1px, 2px, 1px, rgba(2, 132, 99, 0.2));
+  border-radius: $arrondi-grand;
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  &:hover,
+  &:focus {
+    background-color: $couleur-bleu-bouton-hover;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+}

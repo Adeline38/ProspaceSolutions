@@ -16,8 +16,7 @@
 Thumbs.db
 
 # Fichiers exclus pour ce projet
-src
-/documents/cours
+/documents/cours/
 /documents/cahier des charges/
 
 /assets/css/commit-message.md
@@ -31,4 +30,6 @@ src
 
 
 # Prochain commit ne tient pas compte de :
-/public
+/assets/data/
+/assets/js/
+index-card-statique.html

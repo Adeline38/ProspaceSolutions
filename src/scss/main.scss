@@ -1,0 +1,36 @@
+/* ================================================= */
+/* === POINT D'ENTRÉE DE TOUS LES STYLES SCSS === */
+/* ================================================= */
+
+/* Commande de compilation :
+   sass --watch src/scss/main.scss assets/css/styles.css
+*/
+
+/* Bases */
+@use "base/reset";
+@use "base/typography";
+
+/* Composants */
+@use "components/banners";
+@use "components/breadcrumb";
+@use "components/buttons";
+@use "components/cards";
+@use "components/carousels";
+@use "components/forms";
+@use "components/icons";
+@use "components/spinner";
+
+/* Grandes zones des pages */
+@use "layouts/contact";
+@use "layouts/espace";
+@use "layouts/footer";
+@use "layouts/header";
+@use "layouts/index" as layout-index;
+@use "layouts/mes-espaces";
+
+/* Styles propres à une page */
+@use "pages/index" as page-index;
+
+/* Outils visibles dans le CSS final */
+@use "utils/animations";
+@use "utils/helpers";
