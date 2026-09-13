@@ -1,0 +1,95 @@
+/* ================================================= */
+/* === EN-TÊTE ET NAVIGATION === */
+/* ================================================= */
+
+@use "../abstract/variables" as *;
+@use "../abstract/mixins" as *;
+
+.header {
+  @include flex-center(row, center, stretch);
+  @include box-shadow(0, 8px, 10px, -6px);
+  background-color: $couleur-bleu-nuit;
+
+  &__container {
+    @include container;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 64px;
+    padding-inline: $espace-grand;
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .prospace-solutions {
+    color: $couleur-blanc;
+    font-size: 18px;
+    font-weight: 900;
+    line-height: 28px;
+    text-align: center;
+  }
+}
+
+.prospace-solutions {
+  span {
+    span {
+      color: $couleur-bleu-prospace;
+    }
+  }
+}
+
+.navigation {
+  ul {
+    @include flex-center(row, center, center, 2px);
+  }
+
+  a {
+    display: flex;
+    gap: $espace-petit;
+    padding: $espace-petit 14px;
+    border-radius: $arrondi-petit;
+    background-color: $transparent;
+    color: $couleur-gris-clair;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: center;
+
+    &:hover {
+      color: $couleur-blanc;
+    }
+
+    &.active {
+      background-color: $couleur-blanc-20;
+      color: $couleur-bleu-prospace;
+    }
+  }
+
+  li span {
+    @include flex-center;
+    width: 20px;
+    height: 20px;
+    border-radius: $arrondi-grand;
+    background-color: $couleur-bleu-bouton;
+    color: $couleur-blanc;
+    font-weight: 600;
+  }
+}
+
+@include respond-below($breakpoint-mobile) {
+  .header__container,
+  .navigation ul {
+    flex-direction: column;
+    width: unset;
+    max-width: $breakpoint-mobile;
+    height: unset;
+  }
+
+  .header .logo {
+    padding: 10px 0 20px;
+  }
+}

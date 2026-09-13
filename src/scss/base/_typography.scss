@@ -1,4 +1,9 @@
-/* Fonts SF PRO */
+/* ================================================= */
+/* === POLICES ET TEXTES GÉNÉRAUX === */
+/* ================================================= */
+
+@use "../abstract/variables" as *;
+
 @font-face {
   font-family: "SF Pro Display";
   src: url("../fonts/sf-pro-display/sf-pro-display-regular.woff2") format("woff2");
@@ -48,16 +53,7 @@
 }
 
 body {
-  font-family: "SF Pro Display", Arial, sans-serif;
+  font-family: $police-principale;
   font-size: 16px;
   line-height: 1.5;
-  font-display: swap;
-}
-
-h1,
-h2,
-h3,
-h4,
-p {
-  margin-top: 0;
 }

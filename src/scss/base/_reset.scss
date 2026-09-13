@@ -1,11 +1,11 @@
-/* @use "../abstracts/variables" as *;*/
+/* ================================================= */
+/* === REMISE À ZÉRO DES STYLES DU NAVIGATEUR === */
+/* ================================================= */
 
-/* Couleurs principales */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-  /* border: dotted 1px coral; */
 }
 
 html {
@@ -52,7 +52,12 @@ table {
   border-collapse: collapse;
 }
 
-h1, h2, h2, h4, h5, h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
 p {
   margin: 0;
 }

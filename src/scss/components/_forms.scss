@@ -1,0 +1,146 @@
+/* ================================================= */
+/* === FILTRES ET CHAMPS DE FORMULAIRE === */
+/* ================================================= */
+
+@use "../abstract/variables" as *;
+@use "../abstract/mixins" as *;
+
+section.filtre {
+  @include flex-center(column);
+  @include box-shadow(0, 1px, 2px, 1px);
+  width: 100%;
+  border: 1px solid $couleur-gris-clair-clair;
+  background-color: $couleur-blanc;
+}
+
+.filtre__wrapper {
+  @include container;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+  padding: 14px $espace-grand;
+
+  fieldset {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: $espace-petit;
+    padding: 0;
+    border: 0;
+  }
+}
+
+.filtre {
+  .title {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+
+    span {
+      color: $couleur-gris-moyen;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 16px;
+      text-transform: uppercase;
+    }
+
+    .icon-svg {
+      color: $couleur-gris-moyen;
+    }
+  }
+
+  .sep {
+    width: 1px;
+    height: 16px;
+    background-color: $couleur-gris-clair-clair;
+  }
+
+  select {
+    padding: $espace-petit $espace-moyen;
+    border: 1px solid $couleur-gris-clair-clair;
+    border-radius: $arrondi-moyen;
+    background-color: $couleur-blanc;
+    color: $couleur-bleu-nuit;
+    font-size: 14px;
+    font-weight: 400;
+  }
+}
+
+.field-wrapper select {
+  width: 100%;
+  padding: $espace-petit 12px;
+  border: 1px solid $couleur-gris-champ;
+  border-radius: 6px;
+  background-color: $couleur-blanc;
+  color: $couleur-texte-champ;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.checkboxes__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.checkbox-label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $espace-petit;
+  color: $couleur-texte-checkbox;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.checkbox {
+  width: 16px;
+  height: 16px;
+  border: 1px solid $couleur-gris-souris;
+  border-radius: 2px;
+  background-color: $couleur-blanc;
+
+  span {
+    color: $couleur-gris-ardoise;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+  }
+}
+
+@include respond-below($breakpoint-tablette) {
+  .filtre,
+  .filtre__wrapper,
+  .filtre__wrapper fieldset:nth-of-type(1) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: $breakpoint-tablette;
+    height: unset;
+  }
+
+  .filtre .sep {
+    display: none;
+  }
+
+  .field-wrapper {
+    width: 100%;
+  }
+}
+
+@include respond-below($breakpoint-mobile) {
+  .filtre,
+  .filtre__wrapper {
+    flex-direction: column;
+    width: unset;
+    max-width: $breakpoint-mobile;
+    height: unset;
+  }
+}

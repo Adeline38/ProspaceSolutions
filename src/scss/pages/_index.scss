@@ -1,0 +1,46 @@
+/* ================================================= */
+/* === SECTIONS PROPRES À LA PAGE D'ACCUEIL === */
+/* ================================================= */
+
+@use "../abstract/variables" as *;
+@use "../abstract/mixins" as *;
+
+section.catalogue {
+  @include flex-center(column);
+  background-color: $couleur-bleu-pale;
+}
+
+.catalogue__container {
+  @include flex-center(column);
+  max-width: $largeur-conteneur-enfant;
+  padding: 56px $espace-grand;
+}
+
+.catalogue__wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+
+@include respond-below($breakpoint-tablette) {
+  .catalogue__container,
+  .catalogue__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: $breakpoint-tablette;
+    height: unset;
+  }
+}
+
+@include respond-below($breakpoint-mobile) {
+  .catalogue__container,
+  .catalogue__wrapper {
+    width: unset;
+    max-width: $breakpoint-mobile;
+    height: unset;
+  }
+}

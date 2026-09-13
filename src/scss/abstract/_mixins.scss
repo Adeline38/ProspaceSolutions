@@ -1,0 +1,60 @@
+/* ================================================= */
+/* === OUTILS RÉUTILISABLES === */
+/* ================================================= */
+
+@use "variables" as *;
+
+/* Crée rapidement une ligne ou une colonne en Flexbox */
+@mixin flex-center($direction: row, $justify: center, $align: center, $gap: 0) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap;
+}
+
+/* Donne la même largeur aux grands conteneurs du site */
+@mixin container {
+  width: $largeur-conteneur-enfant;
+  max-width: $largeur-conteneur;
+  margin-inline: auto;
+}
+
+/* Ajoute une ombre compatible avec les principaux navigateurs */
+@mixin box-shadow($x: 0, $y: 0, $blur: 0, $spread: 0, $color: $couleur-ombre) {
+  -webkit-box-shadow: $x $y $blur $spread $color;
+  -moz-box-shadow: $x $y $blur $spread $color;
+  box-shadow: $x $y $blur $spread $color;
+}
+
+/* Cache visuellement un texte tout en le gardant lisible par un lecteur d'écran */
+@mixin sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Crée la base commune des boutons et liens ayant l'apparence d'un bouton */
+@mixin bouton($fond, $texte) {
+  @include flex-center(row, center, center, $espace-petit);
+  display: inline-flex;
+  padding: $espace-petit $espace-moyen;
+  border: 0;
+  border-radius: $arrondi-petit;
+  background-color: $fond;
+  color: $texte;
+  cursor: pointer;
+}
+
+/* Place les règles destinées aux écrans plus petits que la valeur donnée */
+@mixin respond-below($breakpoint) {
+  @media (max-width: $breakpoint) {
+    @content;
+  }
+}

@@ -1,0 +1,133 @@
+/* ================================================= */
+/* === PIED DE PAGE === */
+/* ================================================= */
+
+@use "../abstract/variables" as *;
+@use "../abstract/mixins" as *;
+
+footer {
+  @include flex-center(column);
+  background-color: $couleur-bleu-nuit;
+}
+
+.footer__container {
+  @include container;
+  @include flex-center(column);
+  padding: 56px $espace-grand;
+}
+
+.footer__wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  width: 100%;
+
+  p {
+    display: flex;
+    flex-direction: column;
+    max-width: 200px;
+    padding-top: 20px;
+    margin-bottom: 10px;
+    color: $couleur-gris-texte;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.44px;
+    line-height: 19.5px;
+  }
+
+  a {
+    color: $couleur-gris-moyen;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.44px;
+    line-height: 16px;
+
+    &:hover {
+      color: $couleur-bleu-prospace;
+    }
+  }
+}
+
+.footer-title {
+  color: $couleur-blanc;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  line-height: 16px;
+  text-transform: uppercase;
+}
+
+.footer__bottom {
+  @include container;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $espace-grand $espace-grand 0;
+
+  p {
+    color: $couleur-gris-ardoise;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.44px;
+    line-height: 16px;
+  }
+
+  span {
+    text-decoration: underline;
+  }
+}
+
+@include respond-below($breakpoint-large) {
+  .footer__container {
+    padding: $espace-grand 0;
+  }
+
+  .footer__wrapper,
+  .footer__bottom {
+    width: $largeur-conteneur-enfant;
+    margin: auto;
+  }
+
+  .footer__wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@include respond-below($breakpoint-tablette) {
+  .footer__container,
+  .footer__bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: $breakpoint-tablette;
+    height: unset;
+  }
+
+  .footer__bottom {
+    padding: $espace-grand;
+  }
+}
+
+@include respond-below($breakpoint-mobile) {
+  .footer__wrapper,
+  .footer__bottom {
+    display: flex;
+    flex-direction: column;
+    width: unset;
+    max-width: $breakpoint-mobile;
+    height: unset;
+  }
+
+  .footer__wrapper {
+    padding: 10px;
+  }
+
+  .footer__bottom {
+    justify-content: center;
+    align-items: center;
+    padding: $espace-grand;
+    text-align: center;
+  }
+}

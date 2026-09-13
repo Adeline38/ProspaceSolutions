@@ -1,0 +1,167 @@
+/* ================================================= */
+/* === CARTES DES ESPACES === */
+/* ================================================= */
+
+@use "../abstract/variables" as *;
+@use "../abstract/mixins" as *;
+
+.card-espace-wrapper {
+  @include box-shadow(0, 4px, 12px, 0, rgba(0, 0, 0, 0.08));
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 380px;
+  overflow: hidden;
+  border-radius: $arrondi-moyen;
+  background-color: $couleur-blanc;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    @include box-shadow(0, 8px, 24px, 0, rgba(0, 0, 0, 0.15));
+    transform: translateY(-4px);
+  }
+}
+
+.card-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-content-wrapper {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  gap: 12px;
+  padding: $espace-moyen;
+}
+
+.card-title {
+  margin: 0;
+  color: $couleur-bleu-nuit;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.23px;
+  line-height: 20px;
+}
+
+.card-location,
+.card-capacite {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: $couleur-gris-moyen;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.15px;
+  line-height: 20px;
+}
+
+.card-location {
+  span {
+    color: $couleur-gris-texte;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: -0.15px;
+    line-height: 20px;
+  }
+
+  .icon-svg {
+    color: $couleur-bleu-bouton;
+  }
+}
+
+.card-rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.stars {
+  display: flex;
+  color: $couleur-jaune-etoile;
+  letter-spacing: -2px;
+
+  svg {
+    place-self: center;
+  }
+}
+
+.rating-value {
+  color: $couleur-bleu-nuit;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.rating-count {
+  color: $couleur-gris-moyen;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+.card-details-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: $espace-tres-petit;
+  padding: $espace-tres-petit $espace-petit;
+  border-radius: $arrondi-tres-petit;
+  background-color: $couleur-fond-tag;
+  color: $couleur-gris-texte;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+.card-sep {
+  margin: $espace-tres-petit 0;
+  border: 0;
+  border-top: 1px solid $couleur-gris-pale;
+}
+
+.card-footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.price-amount {
+  color: $couleur-bleu-bouton;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+}
+
+.price-unit {
+  color: $couleur-gris-moyen;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+}
+
+.space-card:focus-within {
+  outline: 3px solid $couleur-bleu-prospace;
+}

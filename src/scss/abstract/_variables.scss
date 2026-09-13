@@ -1,0 +1,61 @@
+/* ================================================= */
+/* === CHARTE GRAPHIQUE PROSPACE === */
+/* ================================================= */
+
+/* Couleurs principales */
+$transparent: transparent;
+$couleur-noir: #000000;
+$couleur-bleu-nuit: #0f172a;
+$couleur-bleu-prospace: #38bdf8;
+$couleur-bleu-pale: #f8fafc;
+$couleur-bleu-bouton: #0284c7;
+$couleur-bleu-bouton-hover: #0369a1;
+$couleur-blanc: #ffffff;
+
+/* Couleurs secondaires */
+$couleur-gris-pale: #f1f5f9;
+$couleur-gris-clair: #cad5e2;
+$couleur-gris-clair-clair: #e2e8f0;
+$couleur-gris-favoris: #b0b0b0;
+$couleur-gris-moyen: #90a1b9;
+$couleur-gris-souris: #767676;
+$couleur-gris-texte: #62748e;
+$couleur-gris-ardoise: #45556c;
+$couleur-gris-champ: #cbd5e0;
+$couleur-texte-champ: #2d3748;
+$couleur-texte-checkbox: #4a5568;
+$couleur-fond-tag: #edf2f7;
+$couleur-rose-favoris: #ff2056;
+$couleur-jaune-etoile: #ffb900;
+$couleur-spinner: #3498db;
+
+/* Transparences */
+$couleur-blanc-10: #ffffff10;
+$couleur-blanc-20: #ffffff20;
+$couleur-blanc-90: #ffffff90;
+$couleur-ombre: #00000010;
+
+/* Espacements réutilisés */
+$espace-tres-petit: 4px;
+$espace-petit: 8px;
+$espace-moyen: 16px;
+$espace-grand: 24px;
+
+/* Arrondis */
+$arrondi-tres-petit: 4px;
+$arrondi-petit: 10px;
+$arrondi-moyen: 12px;
+$arrondi-grand: 20px;
+$arrondi-rond: 50%;
+
+/* Dimensions */
+$largeur-conteneur: 1280px;
+$largeur-conteneur-enfant: 78vw;
+
+/* Points de rupture existants dans la maquette */
+$breakpoint-large: 1240px;
+$breakpoint-tablette: 795px;
+$breakpoint-mobile: 375px;
+
+/* Typographie */
+$police-principale: "SF Pro Display", Arial, sans-serif;
