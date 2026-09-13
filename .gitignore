@@ -30,6 +30,7 @@ Thumbs.db
 
 
 # Prochain commit ne tient pas compte de :
-/assets/data/
-/assets/js/
 index-card-statique.html
+/assets/js/carousel.js
+/assets/js/espace.js
+/assets/js/mes-espaces.js

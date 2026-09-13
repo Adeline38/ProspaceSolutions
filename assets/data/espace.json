@@ -1,0 +1,80 @@
+[
+  {
+    "id": "wagram-opera",
+    "nom": "Espace Wagram Opéra",
+    "ville": "Paris",
+    "arrondissement": "8e",
+    "note": 4.8,
+    "avis": 34,
+    "capacite": 12,
+    "equipements": ["Fibre", "PMR", "4K"],
+    "prix": 45,
+    "image": "assets/images/espace-wargram-opera-paris-8.webp",
+    "description": "Salle de réunion lumineuse et moderne."
+  },
+  {
+    "id": "atelier-republique",
+    "nom": "Atelier République",
+    "ville": "Paris",
+    "arrondissement": "11e",
+    "note": 4.6,
+    "avis": 51,
+    "capacite": 8,
+    "equipements": ["Fibre", "4K"],
+    "prix": 35,
+    "image": "assets/images/espace-atelier-republique-paris-11.webp",
+    "description": "Un espace atelier chaleureux."
+  },
+  {
+    "id": "confluence-executive",
+    "nom": "Confluence Executive Suite",
+    "ville": "Lyon",
+    "arrondissement": "2e",
+    "note": 4.9,
+    "avis": 22,
+    "capacite": 20,
+    "equipements": ["Fibre", "PMR", "4K"],
+    "prix": 55,
+    "image": "assets/images/espace-confluence-executive-suite-lyon-2.webp",
+    "description": "Suite exécutive haut de gamme."
+  },
+  {
+    "id": "chartrons-board-room",
+    "nom": "Les Chartrons Board Room",
+    "ville": "Bordeaux",
+    "arrondissement": "",
+    "note": 4.7,
+    "avis": 18,
+    "capacite": 16,
+    "equipements": ["Fibre", "PMR"],
+    "prix": 40,
+    "image": "assets/images/espace-les-chartrons-board-room-bordeaux.webp",
+    "description": "Une salle du conseil prestigieuse."
+  },
+  {
+    "id": "ile-nantes-studio",
+    "nom": "Île de Nantes Studio",
+    "ville": "Nantes",
+    "arrondissement": "",
+    "note": 4.5,
+    "avis": 63,
+    "capacite": 6,
+    "equipements": ["Fibre", "4K"],
+    "prix": 28,
+    "image": "assets/images/espace-ile-de-nantes-nantes.webp",
+    "description": "Studio de travail optimisé."
+  },
+  {
+    "id": "vieux-port-panorama",
+    "nom": "Vieux-Port Panorama",
+    "ville": "Marseille",
+    "arrondissement": "",
+    "note": 4.4,
+    "avis": 29,
+    "capacite": 14,
+    "equipements": ["Fibre", "PMR"],
+    "prix": 38,
+    "image": "assets/images/espace-vieux-port-panorama-marseille.webp",
+    "description": "Bureaux d'exception avec vue."
+  }
+]
