@@ -2,8 +2,7 @@
 /* ================================================= */
 /* === POINT D'ENTRÉE DE TOUS LES STYLES SCSS === */
 /* ================================================= */
-/* Commande de compilation :
-   sass --watch src/scss/main.scss assets/css/styles.css
+/* Commande de compilation : sass --watch src/scss/main.scss assets/css/styles.css
 */
 /* Bases */
 /* ================================================= */
@@ -293,6 +292,9 @@ section.hero {
   }
 }
 /* ================================================= */
+/* === BREADCRUMB === */
+/* ================================================= */
+/* ================================================= */
 /* === POLICES ET TEXTES GÉNÉRAUX === */
 /* ================================================= */
 /* ================================================= */
@@ -560,6 +562,9 @@ section.hero {
   outline: 3px solid #38bdf8;
 }
 
+/* ================================================= */
+/* === CAROUSEL === */
+/* ================================================= */
 /* Les styles du carrousel seront ajoutés avec la page Contact */
 /* ================================================= */
 /* === POLICES ET TEXTES GÉNÉRAUX === */
@@ -732,8 +737,12 @@ section.filtre {
 }
 
 /* Grandes zones des pages */
-/* La mise en page Contact sera ajoutée lorsque son HTML sera intégré */
-/* La mise en page Fiche espace sera ajoutée lorsque son HTML sera intégré */
+/* ================================================= */
+/* === SECTIONS PROPRES À LA PAGE CONTACT === */
+/* ================================================= */
+/* ================================================= */
+/* === SECTIONS PROPRES À LA PAGE FICHE ESPACE === */
+/* ================================================= */
 /* ================================================= */
 /* === POLICES ET TEXTES GÉNÉRAUX === */
 /* ================================================= */
@@ -969,8 +978,13 @@ footer {
     padding: 10px 0 20px;
   }
 }
+/* ================================================= */
+/* === SECTIONS PROPRES À LA PAGE D'ACCUEIL === */
+/* ================================================= */
 /* Réservé à la structure générale de l'accueil si elle devient partagée */
-/* La mise en page Mes espaces sera ajoutée lorsque son HTML sera intégré */
+/* ================================================= */
+/* === SECTIONS PROPRES À LA PAGE MES ESPACES === */
+/* ================================================= */
 /* Styles propres à une page */
 /* ================================================= */
 /* === POLICES ET TEXTES GÉNÉRAUX === */
