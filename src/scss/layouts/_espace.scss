@@ -1,3 +1,80 @@
-/* ================================================= */
-/* === SECTIONS PROPRES À LA PAGE FICHE ESPACE === */
-/* ================================================= */
+/* Présenter la structure de base de la fiche espace. */
+
+@use "../abstract/variables" as *;
+@use "../abstract/mixins" as *;
+
+.main-fiche-espace {
+  min-height: 100vh;
+  padding-bottom: $espace-tres-grand;
+  background-color: $couleur-bleu-pale;
+}
+
+.fiche-header__container,
+.fiche-gallery,
+.fiche-body-layout,
+#fiche-loading-zone {
+  @include container;
+}
+
+.fiche-header__container {
+  padding: $espace-tres-grand $espace-grand $espace-grand;
+}
+
+/* Organiser les trois images de la galerie. */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: repeat(2, 190px);
+  gap: 12px;
+}
+
+.gallery-item {
+  margin: 0;
+  overflow: hidden;
+
+  &.main-img {
+    grid-row: 1 / 3;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+/* Séparer les informations des futures actions. */
+.fiche-body-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+  gap: 40px;
+  padding: 48px $espace-grand 0;
+}
+
+.fiche-info-column {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.tarifs-table {
+  width: 100%;
+
+  th,
+  td {
+    padding: 12px 0;
+    text-align: left;
+  }
+
+  td {
+    font-weight: 700;
+    text-align: right;
+  }
+}
+
+/* Adapter la fiche aux écrans étroits. */
+@include media-queries($breakpoint-tablette) {
+  .fiche-body-layout {
+    grid-template-columns: 1fr;
+  }
+}
