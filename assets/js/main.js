@@ -10,6 +10,106 @@ Rôle : Gérer de manière dynamique et asynchrone le chargement, l'affichage en
 
 */
 
+const FAVORIS_STORAGE_KEY = "prospace_favoris";
+
+// Lire les favoris enregistrés dans le navigateur sans bloquer la page
+// si le stockage est vide, indisponible ou contient une ancienne valeur incorrecte.
+function lireFavoris() {
+    try {
+        const valeurStockee = localStorage.getItem(FAVORIS_STORAGE_KEY);
+        const favoris = valeurStockee ? JSON.parse(valeurStockee) : [];
+
+        if (!Array.isArray(favoris)) return [];
+
+        return [...new Set(favoris.filter(id => typeof id === "string"))];
+    } catch (error) {
+        console.warn("Impossible de lire les favoris ProSpace :", error);
+        return [];
+    }
+}
+
+// Enregistrer la nouvelle liste et indiquer si l'opération a réussi.
+function enregistrerFavoris(favoris) {
+    try {
+        localStorage.setItem(FAVORIS_STORAGE_KEY, JSON.stringify(favoris));
+        return true;
+    } catch (error) {
+        console.error("Impossible d'enregistrer les favoris ProSpace :", error);
+        return false;
+    }
+}
+
+function mettreAJourCompteurFavoris(favoris = lireFavoris()) {
+    const compteur = document.querySelector('.navigation a[href*="mes-espaces"] span');
+
+    if (compteur) compteur.textContent = favoris.length;
+}
+
+// Synchroniser l'apparence et les textes accessibles de tous les cœurs affichés.
+function mettreAJourBoutonsFavoris(targetContainer, listeEspaces) {
+    if (!targetContainer) return;
+
+    const favoris = lireFavoris();
+
+    targetContainer.querySelectorAll(".btn-favoris").forEach(button => {
+        const espaceId = button.dataset.id;
+        const espace = listeEspaces.find(item => item.id === espaceId);
+        const estFavori = favoris.includes(espaceId);
+        const nomEspace = espace ? espace.nom : "cet espace";
+
+        button.setAttribute("aria-pressed", String(estFavori));
+        button.setAttribute(
+            "aria-label",
+            estFavori
+                ? `Retirer ${nomEspace} des favoris`
+                : `Ajouter ${nomEspace} aux favoris`
+        );
+        button.setAttribute(
+            "title",
+            estFavori ? "Retirer des favoris" : "Ajouter aux favoris"
+        );
+        button.classList.toggle("is-active", estFavori);
+    });
+
+    mettreAJourCompteurFavoris(favoris);
+}
+
+function basculerFavori(espaceId) {
+    const favoris = lireFavoris();
+    const estDejaFavori = favoris.includes(espaceId);
+    const nouvelleListe = estDejaFavori
+        ? favoris.filter(id => id !== espaceId)
+        : [...favoris, espaceId];
+
+    return enregistrerFavoris(nouvelleListe);
+}
+
+// Un seul écouteur sur la grille suffit, même quand les filtres recréent les cartes.
+function activerGestionFavoris(targetContainer, listeEspaces) {
+    if (!targetContainer) return;
+
+    targetContainer.addEventListener("click", event => {
+        const button = event.target.closest(".btn-favoris");
+
+        if (!button || !targetContainer.contains(button)) return;
+
+        const espaceId = button.dataset.id;
+
+        if (!espaceId) return;
+
+        if (basculerFavori(espaceId)) {
+            mettreAJourBoutonsFavoris(targetContainer, listeEspaces);
+        }
+    });
+
+    // Mettre la page à jour si les favoris changent dans un autre onglet.
+    window.addEventListener("storage", event => {
+        if (event.key === FAVORIS_STORAGE_KEY) {
+            mettreAJourBoutonsFavoris(targetContainer, listeEspaces);
+        }
+    });
+}
+
 async function initCatalogue() {
     // Rôle : Modifier le titre/descript de la page, télécharger la liste des salles, l'afficher et activer le système de recherche
     // Paramètres : Aucun paramètre d'entrée
@@ -34,6 +134,9 @@ async function initCatalogue() {
     const wifiCheckbox = document.querySelector('input[name="wifi"]');
     const pmrCheckbox = document.querySelector('input[name="pmr"]');
     const screenCheckbox = document.querySelector('input[name="screen"]');
+
+    // Afficher immédiatement le nombre de favoris déjà mémorisés.
+    mettreAJourCompteurFavoris();
 
     // Préparer une liste vide en mémoire pour ranger toutes nos salles plus tard
     let totalEspaces = [];
@@ -91,6 +194,7 @@ async function initCatalogue() {
         // Lancement de l'affichage dans le DOM
         // Déclencher l'injection automatique de toutes les cartes de salles sur notre page web
         renderEspaces(totalEspaces, container);
+        activerGestionFavoris(container, totalEspaces);
 
         // Écouteur d'événements pour le filtrage en temps réel (US-03)
         // Activer la surveillance du formulaire si le bloc des filtres existe
@@ -185,7 +289,7 @@ function renderEspaces(listeEspaces, targetContainer) {
                 <img src="${espace.image}" alt="Espace ${espace.nom} - ${espace.description}" class="card-img" loading="lazy">
                 
                 <button type="button" class="btn-favoris" aria-label="Ajouter ${espace.nom} aux favoris" aria-pressed="false" data-id="${espace.id}">
-                    <svg aria-hidden="true" focusable="false" xmlns="http://w3.org" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="icon-svg lucide lucide-heart" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                    <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="icon-svg lucide lucide-heart" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
                 </button>
             </div>
             
@@ -233,6 +337,9 @@ function renderEspaces(listeEspaces, targetContainer) {
         // Suspendre officiellement la nouvelle carte construite à l'intérieur de la grille de l'écran
         targetContainer.appendChild(article);
     });
+
+    // Restaurer l'état des cœurs après chaque nouvel affichage ou filtrage.
+    mettreAJourBoutonsFavoris(targetContainer, listeEspaces);
 }
 
 function filtrerCatalogue(listeComplete, targetContainer, criteres) {
