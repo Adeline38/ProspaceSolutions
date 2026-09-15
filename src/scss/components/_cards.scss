@@ -85,14 +85,19 @@
   gap: 6px;
 }
 
+/* Aligner les cinq étoiles des cartes de l’accueil. */
 .stars {
-  display: flex;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
   color: $couleur-jaune-etoile;
-  letter-spacing: -2px;
+}
 
-  svg {
-    place-self: center;
-  }
+/* Empêcher le style général .icon-svg de changer leur taille. */
+.stars .icon-svg {
+  flex: 0 0 auto;
+  width: 15px;
+  height: 15px;
 }
 
 .rating-value {

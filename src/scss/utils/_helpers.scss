@@ -3,7 +3,27 @@
 /* ================================================= */
 
 @use "../abstract/mixins" as *;
+@use "../abstract/variables" as *;
 
 .sr-only {
   @include sr-only;
+}
+
+/* Cacher le lien d'évitement jusqu'à sa sélection avec le clavier. */
+.skip-link {
+  position: fixed;
+  top: $espace-petit;
+  left: $espace-petit;
+  z-index: 2000;
+  padding: $espace-petit $espace-moyen;
+  border-radius: $arrondi-petit;
+  background-color: $couleur-blanc;
+  color: $couleur-bleu-nuit;
+  transform: translateY(-150%);
+
+  /* Afficher le lien lorsqu'il reçoit le focus du clavier. */
+  &:focus {
+    transform: translateY(0);
+    outline: 3px solid $couleur-bleu-prospace;
+  }
 }

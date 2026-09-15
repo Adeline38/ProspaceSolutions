@@ -195,6 +195,48 @@ async function initCatalogue() {
     }
 }
 
+function creerEtoilesCarte(note) {
+    // Arrondir la note pour choisir le nombre d’étoiles pleines.
+    const noteArrondie = Math.round(note);
+
+    // Préparer la chaîne qui recevra les cinq SVG.
+    let etoilesHtml = "";
+
+    // Créer exactement cinq étoiles.
+    for (let index = 0; index < 5; index += 1) {
+        // Préparer une étoile vide par défaut.
+        let remplissage = "none";
+
+        // Remplir l’étoile si sa position correspond à la note.
+        if (index < noteArrondie) {
+            remplissage = "currentColor";
+        }
+
+        // Ajouter une nouvelle étoile SVG.
+        etoilesHtml += `
+            <svg
+                aria-hidden="true"
+                focusable="false"
+                xmlns="http://www.w3.org/2000/svg"
+                width="15"
+                height="15"
+                fill="${remplissage}"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                class="icon-svg lucide lucide-star"
+                viewBox="0 0 24 24"
+            >
+                <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.12 2.12 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.12 2.12 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.12 2.12 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.12 2.12 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.12 2.12 0 0 0 1.597-1.16z"/>
+            </svg>
+        `;
+    }
+
+    // Renvoyer les cinq SVG.
+    return etoilesHtml;
+}
+
 function renderEspaces(listeEspaces, targetContainer) {
     // Créer les cartes correspondant à la liste reçue.
 
@@ -255,14 +297,23 @@ function renderEspaces(listeEspaces, targetContainer) {
                     <span>${espace.ville}${espace.arrondissement ? " " + espace.arrondissement : ""}</span>
                 </div>
                 
-                <div class="card-rating">
+                <!-- Donner la note complète aux lecteurs d’écran -->
+                <div
+                    class="card-rating"
+                    aria-label="Note ${espace.note.toFixed(1)} sur 5, ${espace.avis} avis"
+                >
+                    <!-- Cacher les dessins, car la note est déjà annoncée par le parent -->
                     <div class="stars" aria-hidden="true">
-                        <span>
-                            <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="icon-svg lucide lucide-star" viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.12 2.12 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.12 2.12 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.12 2.12 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.12 2.12 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.12 2.12 0 0 0 1.597-1.16z"/></svg>
-                        </span>
+                        ${creerEtoilesCarte(espace.note)}
                     </div>
-                    <strong class="rating-value">${espace.note.toFixed(1)}</strong>
-                    <span class="rating-count">(${espace.avis} avis)</span>
+
+                    <strong class="rating-value">
+                        ${espace.note.toFixed(1)}
+                    </strong>
+
+                    <span class="rating-count">
+                        (${espace.avis} avis)
+                    </span>
                 </div>
                 
                 <div class="card-details-row">

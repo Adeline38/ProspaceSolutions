@@ -1,80 +1,343 @@
-/* Présenter la structure de base de la fiche espace. */
+/* Présenter la fiche espace et son fond général */
 
 @use "../abstract/variables" as *;
 @use "../abstract/mixins" as *;
 
+/* Conteneurs et en-tête */
 .main-fiche-espace {
   min-height: 100vh;
   padding-bottom: $espace-tres-grand;
   background-color: $couleur-bleu-pale;
 }
 
+/* Donner la même largeur aux grandes zones de la fiche. */
 .fiche-header__container,
 .fiche-gallery,
 .fiche-body-layout,
-#fiche-loading-zone {
-  @include container;
+.fiche-loading-zone {
+  width: calc(100% - 32px);
+  max-width: $largeur-conteneur;
+  margin-inline: auto;
 }
 
+/* Espacer le titre du fil d’Ariane et de la galerie. */
 .fiche-header__container {
-  padding: $espace-tres-grand $espace-grand $espace-grand;
+  padding-block: $espace-grand;
 }
 
-/* Organiser les trois images de la galerie. */
+/* Présenter le type comme une petite information secondaire. */
+.fiche-type {
+  margin-bottom: $espace-petit;
+  color: $couleur-bleu-bouton;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Mettre le nom de la salle en évidence. */
+.fiche-header h1 {
+  color: $couleur-bleu-nuit;
+  font-size: 2rem;
+  line-height: 1.15;
+}
+
+/* Ranger l’adresse et la note l’une sous l’autre sur mobile. */
+.fiche-header__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $espace-petit;
+  margin-top: $espace-moyen;
+}
+
+/* Aligner les petites informations avec leurs icônes. */
+.fiche-location,
+.fiche-rating {
+  display: flex;
+  align-items: center;
+  gap: $espace-petit;
+  color: $couleur-gris-texte;
+}
+
+/* Reprendre la couleur des étoiles de la maquette. */
+.rating-stars {
+  color: $couleur-jaune-etoile;
+  letter-spacing: 2px;
+}
+/* Aligner horizontalement les cinq étoiles. */
+.rating-stars {
+  display: inline-flex;
+  gap: 2px;
+  color: $couleur-jaune-etoile;
+}
+/* Fixer la taille malgré les styles généraux des icônes. */
+.rating-stars .icon-svg {
+  width: 15px;
+  height: 15px;
+}
+
+
+/* Chargmeent et erreur */
+/* Centrer le message pendant le chargement du JSON. */
+.fiche-loading-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $espace-moyen;
+  padding-block: $espace-tres-grand;
+  color: $couleur-bleu-nuit;
+}
+/* Masquer complètement la zone lorsqu’elle ne contient plus rien. */
+.fiche-loading-zone:empty {
+  display: none;
+  padding: 0;
+}
+
+/* Présenter clairement une erreur de chargement. */
+.error-message {
+  padding: $espace-grand;
+  border: 1px solid $couleur-erreur;
+  border-radius: $arrondi-moyen;
+  background-color: $couleur-blanc;
+  color: $couleur-erreur;
+}
+
+/* Rendre le lien de retour facilement identifiable. */
+.error-message a {
+  display: inline-block;
+  margin-top: $espace-moyen;
+  color: $couleur-bleu-bouton;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* Galerie mobile-first */
+/* Empiler d’abord les photographies sur les petits écrans. */
 .gallery-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: repeat(2, 190px);
+  display: flex;
+  flex-direction: column;
   gap: 12px;
 }
 
+/* Empiler les photographies secondaires sur mobile. */
+.gallery-secondary {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Créer un cadre identique pour chaque photographie. */
 .gallery-item {
+  width: 100%;
+  height: 220px;
   margin: 0;
   overflow: hidden;
+  border-radius: $arrondi-moyen;
+}
 
-  &.main-img {
-    grid-row: 1 / 3;
+/* Recadrer la photographie sans la déformer. */
+.gallery-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Placer les photographies côte à côte sur tablette et ordinateur. */
+@media (min-width: $breakpoint-tablette) {
+  .gallery-grid {
+    flex-direction: row;
+    height: 392px;
   }
 
-  img {
-    width: 100%;
+  /* Donner deux parts de largeur à la photographie principale. */
+  .gallery-item--main {
+    flex: 2 1 0;
     height: 100%;
-    object-fit: cover;
+  }
+
+  /* Donner une part de largeur aux photographies secondaires. */
+  .gallery-secondary {
+    flex: 1 1 0;
+    min-width: 0;
+    height: 100%;
+  }
+
+  /* Masquer la colonne secondaire lorsqu’elle ne contient aucune image visible. */
+  .gallery-secondary:not(:has(.gallery-item:not([hidden]))) {
+    display: none;
+  }
+
+  /* Partager automatiquement la hauteur entre les images présentes. */
+  .gallery-secondary .gallery-item {
+    flex: 1 1 0;
+    min-height: 0;
+    height: auto;
   }
 }
 
-/* Séparer les informations des futures actions. */
+/* Colonne d'infomration ASIDE */
+/* Empiler les informations et les tarifs sur mobile. */
 .fiche-body-layout {
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+  grid-template-columns: 1fr;
   gap: 40px;
-  padding: 48px $espace-grand 0;
+  padding-top: 48px;
 }
 
+/* Espacer régulièrement les trois blocs d’informations. */
 .fiche-info-column {
   display: flex;
   flex-direction: column;
   gap: 32px;
 }
 
-.tarifs-table {
-  width: 100%;
+/* Uniformiser les titres de la fiche. */
+.info-block h2,
+.action-card h2 {
+  margin-bottom: $espace-moyen;
+  color: $couleur-bleu-nuit;
+  font-size: 1.25rem;
+}
 
-  th,
-  td {
-    padding: 12px 0;
-    text-align: left;
-  }
+/* Faciliter la lecture de la description. */
+.dynamic-description {
+  color: $couleur-gris-texte;
+  line-height: 1.7;
+}
 
-  td {
-    font-weight: 700;
-    text-align: right;
+/* Grille des équipements */
+/* Afficher les équipements sur une colonne en mobile. */
+.grid-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+/* Présenter chaque équipement dans une petite carte. */
+.grid-list li {
+  display: flex;
+  align-items: center;
+  gap: $espace-petit;
+  padding: 14px $espace-moyen;
+  border: 1px solid $couleur-gris-clair-clair;
+  border-radius: $arrondi-petit;
+  background-color: $couleur-blanc;
+  color: $couleur-gris-texte;
+}
+
+/* Colorer les icônes sans remplacer leur texte. */
+.grid-list .icon-svg {
+  width: 18px;
+  height: 18px;
+  color: $couleur-bleu-bouton;
+}
+
+/* Utiliser deux colonnes lorsque la place devient suffisante. */
+@media (min-width: $breakpoint-tablette) {
+  .grid-list {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Adapter la fiche aux écrans étroits. */
-@include media-queries($breakpoint-tablette) {
+/* Bloc Capacité */
+/* Reproduire le cadre bleu de la maquette. */
+.capacity-box {
+  padding: $espace-grand;
+  border: 1px solid rgba($couleur-bleu-prospace, 0.5);
+  border-radius: $arrondi-moyen;
+  background-color: rgba($couleur-bleu-prospace, 0.08);
+}
+
+/* Aligner l’icône avec les informations de capacité. */
+.capacity-box__content {
+  display: flex;
+  align-items: flex-start;
+  gap: $espace-moyen;
+}
+
+/* Rendre la capacité principale facile à repérer. */
+.capacity-box__content strong {
+  color: $couleur-bleu-nuit;
+}
+
+/* Présenter l’explication comme une information secondaire. */
+.capacity-box__description {
+  margin-top: $espace-tres-petit;
+  color: $couleur-gris-moyen;
+}
+
+/* Encart des tarifs et des actions */
+/* Présenter les tarifs dans une carte blanche. */
+.action-card {
+  display: flex;
+  flex-direction: column;
+  gap: $espace-moyen;
+  padding: $espace-grand;
+  border: 1px solid $couleur-gris-clair-clair;
+  border-radius: $arrondi-moyen;
+  background-color: $couleur-blanc;
+  box-shadow: 0 10px 30px $couleur-ombre;
+}
+
+/* Utiliser toute la largeur disponible pour le tableau. */
+.tarifs-table {
+  width: 100%;
+}
+
+/* Présenter les en-têtes comme une information secondaire. */
+.tarifs-table thead {
+  color: $couleur-gris-moyen;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+/* Espacer les lignes et ajouter des séparateurs. */
+.tarifs-table th,
+.tarifs-table td {
+  padding: 14px 0;
+  border-bottom: 1px solid $couleur-gris-clair-clair;
+  text-align: left;
+}
+
+/* Aligner les montants à droite. */
+.tarifs-table td {
+  color: $couleur-bleu-nuit;
+  font-weight: 700;
+  text-align: right;
+}
+
+/* Mettre le tarif journalier en évidence. */
+.tarifs-table__highlight th,
+.tarifs-table__highlight td {
+  color: $couleur-bleu-bouton;
+}
+
+/* Présenter le délai comme une information discrète. */
+.action-disclaimer {
+  color: $couleur-gris-moyen;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+/* Disposition sur grand écran */
+/* Séparer le contenu et l’encart quand la largeur le permet. */
+@media (min-width: $breakpoint-tablette) {
+  .fiche-header__meta {
+    flex-direction: row;
+    align-items: center;
+    gap: $espace-grand;
+  }
+
   .fiche-body-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+  }
+
+  /* Garder les tarifs visibles pendant la lecture des informations. */
+  .fiche-action-sidebar {
+    position: sticky;
+    top: calc($hauteur-header + #{$espace-grand});
+    align-self: start;
   }
 }

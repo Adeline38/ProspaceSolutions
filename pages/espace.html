@@ -3,86 +3,317 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Consulter une fiche espace ProSpace Solutions.">
-    <title>Fiche espace | ProSpace Solutions</title>
+    <!-- Fournir une description de secours avant le chargement du JSON -->
+    <meta name="description" content="Consultez les caractéristiques, équipements et tarifs d’un espace de travail ProSpace Solutions.">
+
+    <!-- Fournir un titre de secours avant l’arrivée des données dynamiques -->
+    <title>Détail d’un espace de travail | ProSpace Solutions</title>
+
+    <!---->
     <link rel="stylesheet" href="../assets/css/styles.css">
+    <!---->
+    <!-- Fournir un favicon standard reconnu par tous les navigateurs -->
+    <link rel="icon" href="../public/_favicon_io/favicon.ico" sizes="any">
+    <!-- Fournir une version PNG plus précise pour les navigateurs modernes -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../public/_favicon_io/favicon-32x32.png">
+    <!-- Fournir une petite version pour certains onglets -->
+    <link rel="icon"  type="image/png" sizes="16x16" href="../public/_favicon_io/favicon-16x16.png">
+    <!-- Fournir l’icône utilisée sur les appareils Apple -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../public/_favicon_io/apple-touch-icon.png">
+    <link rel="manifest" href="../public/assets/img/favicon_io/site.webmanifest">
+
     <!-- Charger les éléments communs du site -->
-    <script src="../assets/js/header.js"></script>
-    <script src="../assets/js/footer.js"></script>
+    <script src="../assets/js/header.js" defer></script>
+    <script src="../assets/js/footer.js" defer></script>
+
   </head>
   <body>
+    <!-- Permettre d’atteindre directement la fiche avec le clavier -->
+    <a class="skip-link" href="#contenu-principal">
+        Aller au contenu principal
+    </a>
+
     <!-- Injecter le menu commun -->
     <header class="header"></header>
 
     <!-- Préparer les emplacements de la fiche dynamique -->
-    <main class="main-fiche-espace">
-      <nav class="breadcrumb" aria-label="Fil d’Ariane">
-        <div class="breadcrumb__container">
-          <ol>
-            <li><a href="../index.html">Accueil</a></li>
-            <li><span class="dynamic-breadcrumb-city">Ville</span></li>
-            <li aria-current="page" class="dynamic-breadcrumb-name">Espace</li>
-          </ol>
+    <!-- Donner une destination au lien d’évitement -->
+    <!-- Donner une destination au lien d’évitement -->
+    <main class="main-fiche-espace" id="contenu-principal">
+
+        <!-- Aider l’utilisateur à comprendre sa position dans le site -->
+        <nav class="breadcrumb" aria-label="Fil d’Ariane">
+            <div class="breadcrumb__container">
+                <ol>
+                    <li>
+                        <a href="../index.html">Accueil</a>
+                    </li>
+
+                    <li>
+                        <!-- Afficher dynamiquement la ville de la salle -->
+                        <a href="../index.html" class="dynamic-breadcrumb-city">
+                            Ville
+                        </a>
+                    </li>
+
+                    <!-- Indiquer que ce dernier élément représente la page actuelle -->
+                    <li aria-current="page" class="dynamic-breadcrumb-name">
+                        Espace
+                    </li>
+                </ol>
+            </div>
+        </nav>
+
+        <!-- Annoncer le chargement ou une erreur aux lecteurs d’écran -->
+        <div id="fiche-loading-zone" class="fiche-loading-zone" role="status" aria-live="polite" aria-atomic="true">
+            <p>Chargement de la fiche…</p>
         </div>
-      </nav>
 
-      <!-- Afficher ici l’attente ou une erreur -->
-      <div id="fiche-loading-zone"></div>
+        <!-- Masquer la fiche tant que les données ne sont pas disponibles -->
+        <div id="fiche-content-zone" hidden>
 
-      <!-- Masquer la fiche avant le chargement des données -->
-      <div id="fiche-content-zone" hidden>
-        <section class="fiche-header">
-          <div class="fiche-header__container">
-            <h1 class="dynamic-name">Nom de l’espace</h1>
-            <p class="dynamic-address">Adresse</p>
-            <p><strong class="dynamic-note">0.0</strong> <span class="dynamic-avis">0 avis</span></p>
-          </div>
-        </section>
+            <!-- Présenter le nom et les informations principales de la salle -->
+            <section class="fiche-header" aria-labelledby="fiche-title">
+                <div class="fiche-header__container">
 
-        <!-- Préparer la galerie des photographies -->
-        <section class="fiche-gallery" aria-label="Galerie photo de l’espace">
-          <div class="gallery-grid">
-            <figure class="gallery-item main-img"><img id="gallery-img-1" src="" alt=""></figure>
-            <figure class="gallery-item"><img id="gallery-img-2" src="" alt=""></figure>
-            <figure class="gallery-item"><img id="gallery-img-3" src="" alt=""></figure>
-          </div>
-        </section>
+                    <!-- Afficher le type provenant du JSON -->
+                    <p class="dynamic-type fiche-type">Type d’espace</p>
 
-        <!-- Regrouper les informations qui seront injectées -->
-        <div class="fiche-body-layout">
-          <div class="fiche-info-column">
-            <section class="info-block"><h2>À propos</h2><p class="dynamic-description">Description à charger.</p></section>
-            <section class="info-block"><h2>Équipements</h2><ul class="dynamic-equipments-list grid-list"></ul></section>
-            <section class="info-block"><h2>Capacité</h2><p>Jusqu’à <strong class="dynamic-capacity">0</strong> personnes</p></section>
-            <section class="info-block">
-              <h2>Tarifs</h2>
-              <table class="tarifs-table">
-                <caption>Tarifs hors taxes</caption>
-                <tbody>
-                  <tr><th scope="row">À l’heure</th><td class="price-hour">0 €</td></tr>
-                  <tr><th scope="row">Demi-journée</th><td class="price-half">0 €</td></tr>
-                  <tr><th scope="row">Journée</th><td class="price-day">0 €</td></tr>
-                </tbody>
-              </table>
+                    <!-- Afficher le nom provenant du JSON -->
+                    <h1 id="fiche-title" class="dynamic-name">
+                        Nom de l’espace
+                    </h1>
+
+                    <div class="fiche-header__meta">
+
+                        <!-- Afficher l’adresse complète de la salle -->
+                        <p class="fiche-location">
+                            <img src="../assets/icons/ico_localisation.svg" class="icon-svg" width="18" height="18" alt="">
+
+                            <span class="dynamic-address">
+                                Adresse complète
+                            </span>
+                        </p>
+
+                        <!-- Regrouper les étoiles, la note et les avis -->
+                        <p
+                            class="fiche-rating" role="status" aria-label="Note en cours de chargement">
+                            <!-- Cacher les étoiles aux lecteurs d’écran pour éviter une répétition -->
+                            <!-- Recevoir les cinq SVG créés par JavaScript -->
+                            <span
+                                class="dynamic-stars rating-stars"
+                                aria-hidden="true"
+                            ></span>
+
+                            <strong class="dynamic-note">
+                                0,0
+                            </strong>
+
+                            <span class="dynamic-avis">
+                                0 avis vérifiés
+                            </span>
+                        </p>
+
+                    </div>
+                </div>
             </section>
-          </div>
 
-          <!-- Permettre l’enregistrement de l’espace affiché -->
-          <aside class="fiche-action-sidebar">
-            <button type="button" id="btn-toggle-favoris" class="btn-secondary" aria-pressed="false" aria-label="Ajouter cet espace à mes favoris">
-              <img src="../assets/icons/ico_coeur.svg" alt="" class="btn-fav-icon icon-svg">
-              <span class="btn-fav-text">Ajouter aux favoris</span>
-            </button>
-            <!-- Transmettre le nom de l’espace au formulaire -->
-            <a href="contact.html" id="btn-contact-team" class="btn-primary">Contacter l’équipe</a>
-          </aside>
+            <!-- Présenter les différentes vues de la salle -->
+            <section
+                class="fiche-gallery"
+                aria-labelledby="gallery-title"
+            >
+                <!-- Donner un titre accessible sans l’afficher visuellement -->
+                <h2 id="gallery-title" class="sr-only">
+                    Galerie de l’espace
+                </h2>
+
+                <div class="gallery-grid">
+                  <!-- Afficher la photographie principale sur les deux tiers -->
+                  <figure class="gallery-item gallery-item--main">
+                      <img id="gallery-img-1" src="../assets/images/espace-wargram-opera-paris-8.webp" width="800" height="520" loading="eager" alt="Vue principale de l’espace"
+                      >
+                  </figure>
+
+                  <!-- Regrouper les photographies qui se partagent le dernier tiers -->
+                  <div class="gallery-secondary">
+
+                      <!-- Charger la deuxième photographie en différé -->
+                      <figure class="gallery-item">
+                          <img id="gallery-img-2" src="../assets/images/espace-wargram-opera-paris-8-2.webp" width="2260" height="1720" loading="lazy" alt="Vue intérieure de l’espace"
+                          >
+                      </figure>
+
+                      <!-- Charger la troisième photographie en différé -->
+                      <figure class="gallery-item">
+                          <img id="gallery-img-3" src="../assets/images/espace-wargram-opera-paris-8-3.webp" width="2299" height="1737" loading="lazy" alt="Aménagement de l’espace"
+                          >
+                      </figure>
+
+                  </div>
+              </div>
+            </section>
+
+            <!-- Séparer les informations de l’encart des tarifs -->
+            <div class="fiche-body-layout">
+
+                <!-- Regrouper les informations détaillées dans la colonne principale -->
+                <div class="fiche-info-column">
+
+                    <section class="info-block">
+                        <h2>À propos de cet espace</h2>
+
+                        <!-- Afficher la description provenant du JSON -->
+                        <p class="dynamic-description">
+                            Description en cours de chargement.
+                        </p>
+                    </section>
+
+                    <section class="info-block">
+                        <h2>Équipements inclus</h2>
+
+                        <!-- Recevoir les équipements créés par JavaScript -->
+                        <ul
+                            class="dynamic-equipments-list grid-list"
+                        ></ul>
+                    </section>
+
+                    <section class="info-block capacity-box">
+                        <h2>Capacité &amp; Configuration</h2>
+
+                        <div class="capacity-box__content">
+                            <img
+                                src="../assets/icons/ico_personnes.svg"
+                                class="icon-svg"
+                                width="20"
+                                height="20"
+                                alt=""
+                            >
+
+                            <div>
+                                <p>
+                                    Jusqu’à
+                                    <strong class="dynamic-capacity">
+                                        0
+                                    </strong>
+                                    personnes
+                                </p>
+
+                                <p class="capacity-box__description">
+                                    Configuration modulable : théâtre, classe,
+                                    U ou boardroom — sur demande.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+
+                <!-- Regrouper les tarifs et les actions importantes -->
+                <aside
+                    class="fiche-action-sidebar"
+                    aria-label="Tarifs et actions"
+                >
+                    <div class="action-card">
+
+                        <h2 id="tarifs-title">Tarifs</h2>
+
+                        <!-- Présenter les tarifs dans un vrai tableau accessible -->
+                        <table
+                            class="tarifs-table"
+                            aria-labelledby="tarifs-title"
+                        >
+                            <!-- Décrire précisément le contenu du tableau -->
+                            <caption class="sr-only">
+                                Grille des tarifs hors taxes
+                            </caption>
+
+                            <!-- Donner un nom aux deux colonnes -->
+                            <thead>
+                                <tr>
+                                    <th scope="col">Durée</th>
+                                    <th scope="col">Prix HT</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <th scope="row">À l’heure</th>
+                                    <td class="price-hour">0 €</td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">
+                                        Demi-journée (4 h)
+                                    </th>
+                                    <td class="price-half">0 €</td>
+                                </tr>
+
+                                <tr class="tarifs-table__highlight">
+                                    <th scope="row">
+                                        Journée complète
+                                    </th>
+                                    <td class="price-day">0 €</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- Ajouter ou retirer la salle des favoris -->
+                        <button
+                            type="button"
+                            id="btn-toggle-favoris"
+                            class="btn-secondary"
+                            aria-pressed="false"
+                            aria-label="Ajouter cet espace à mes favoris"
+                        >
+                            <img
+                                src="../assets/icons/ico_coeur.svg"
+                                class="btn-fav-icon icon-svg"
+                                width="18"
+                                height="18"
+                                alt=""
+                            >
+
+                            <span class="btn-fav-text">
+                                Ajouter aux favoris
+                            </span>
+                        </button>
+
+                        <!-- Annoncer le résultat de l’action sur les favoris -->
+                        <p
+                            id="fiche-favorite-feedback"
+                            class="sr-only"
+                            role="status"
+                            aria-live="polite"
+                        ></p>
+
+                        <!-- Conserver un vrai lien utilisable sans événement JavaScript -->
+                        <a
+                            href="contact.html"
+                            id="btn-contact-team"
+                            class="btn-primary"
+                        >
+                            Contacter l’équipe
+                        </a>
+
+                        <!-- Rassurer l’utilisateur sur le délai de réponse -->
+                        <p class="action-disclaimer">
+                            Réponse garantie sous 2 h ouvrées ·
+                            Sans engagement
+                        </p>
+
+                    </div>
+                </aside>
+
+            </div>
         </div>
-      </div>
     </main>
 
     <!-- Injecter le pied de page commun -->
     <footer class="footer"></footer>
+
     <!-- Lire l’identifiant après la création du document -->
     <script src="../assets/js/espace.js" defer></script>
   </body>
+
 </html>
