@@ -1,4 +1,59 @@
-/* ================================================= */
-/* === CAROUSEL === */
-/* ================================================= */
-/* Les styles du carrousel seront ajoutés avec la page Contact */
+/* Faire défiler les portraits de l’équipe sur la page contact. */
+
+@use "../abstract/variables" as *;
+@use "../abstract/mixins" as *;
+
+.team-section {
+  padding-block: $espace-tres-grand;
+  background-color: $couleur-blanc;
+
+  &__container {
+    @include container;
+  }
+}
+
+.carousel-container {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  align-items: center;
+  gap: $espace-moyen;
+  margin-top: $espace-grand;
+}
+
+.carousel-track-wrapper {
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.35s ease;
+}
+
+.team-card {
+  flex: 0 0 100%;
+  padding: $espace-grand;
+  text-align: center;
+
+  img {
+    width: 160px;
+    height: 160px;
+    margin-inline: auto;
+    border-radius: $arrondi-rond;
+    object-fit: cover;
+  }
+
+  h3 {
+    margin-top: $espace-moyen;
+  }
+}
+
+.btn-nav {
+  @include flex-center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: $arrondi-rond;
+  background-color: $couleur-bleu-bouton;
+  color: $couleur-blanc;
+  font-size: 1.5rem;
+}

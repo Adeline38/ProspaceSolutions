@@ -51,8 +51,35 @@ function activerValidationFormulaire() {
     });
 }
 
+function activerCarrousel() {
+    // Préparer les cartes et les deux boutons de déplacement.
+    const piste = document.querySelector(".carousel-track");
+    const cartes = [...document.querySelectorAll(".team-card")];
+    const boutonPrecedent = document.getElementById("carousel-prev");
+    const boutonSuivant = document.getElementById("carousel-next");
+    const annonce = document.getElementById("carousel-live-announcer");
+    let indexActuel = 0;
+
+    if (!piste || cartes.length === 0 || !boutonPrecedent || !boutonSuivant) return;
+
+    function afficherCarte(index) {
+        // Replacer l’index entre la première et la dernière carte.
+        indexActuel = (index + cartes.length) % cartes.length;
+        piste.style.transform = `translateX(-${indexActuel * 100}%)`;
+
+        if (annonce) {
+            annonce.textContent = `Membre ${indexActuel + 1} sur ${cartes.length} : ${cartes[indexActuel].dataset.name}`;
+        }
+    }
+
+    boutonPrecedent.addEventListener("click", () => afficherCarte(indexActuel - 1));
+    boutonSuivant.addEventListener("click", () => afficherCarte(indexActuel + 1));
+    afficherCarte(0);
+}
+
 // Activer les fonctions lorsque le document est prêt.
 document.addEventListener("DOMContentLoaded", () => {
     preRemplirSujet();
     activerValidationFormulaire();
+    activerCarrousel();
 });
