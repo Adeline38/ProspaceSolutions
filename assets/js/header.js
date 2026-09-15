@@ -1,23 +1,60 @@
-/* ================================================= 
+/* Partager le menu et les outils communs des favoris sur toutes les pages. */
 
-Rôle : Afficher dynamiquement le header
+const FAVORIS_STORAGE_KEY = "prospace_favoris";
 
-/* ================================================= 
+function lireFavoris() {
+    // Lire et nettoyer la liste enregistrée dans le navigateur.
+    try {
+        const valeurStockee = localStorage.getItem(FAVORIS_STORAGE_KEY);
+        const favoris = valeurStockee ? JSON.parse(valeurStockee) : [];
 
-- calculerPrefixeChemin() : Calculer le bon chemin vers la racine du site selon la page actuelle
-- integrerHeaderDynamique() : Injecter le Header avec les bons liens calculés dynamiquement
+        if (!Array.isArray(favoris)) return [];
 
-*/
+        return [...new Set(favoris.filter(id => typeof id === "string"))];
+    } catch (error) {
+        console.warn("Impossible de lire les favoris ProSpace :", error);
+        return [];
+    }
+}
+
+function enregistrerFavoris(favoris) {
+    // Sauvegarder une liste propre et signaler un éventuel échec.
+    try {
+        localStorage.setItem(FAVORIS_STORAGE_KEY, JSON.stringify([...new Set(favoris)]));
+        return true;
+    } catch (error) {
+        console.error("Impossible d’enregistrer les favoris ProSpace :", error);
+        return false;
+    }
+}
+
+function mettreAJourCompteurFavoris(favoris = lireFavoris()) {
+    // Afficher le nombre de favoris dans la pastille du menu.
+    const lienMesEspaces = document.querySelector(
+        '.navigation a[href*="mes-espaces"]'
+    );
+    const pastille = lienMesEspaces?.querySelector("span");
+
+    if (!pastille) return;
+
+    const nombreFavoris = favoris.length;
+    const libelleFavoris = nombreFavoris > 1
+        ? `${nombreFavoris} espaces favoris`
+        : `${nombreFavoris} espace favori`;
+
+    pastille.textContent = nombreFavoris;
+    pastille.setAttribute("aria-hidden", "true");
+    lienMesEspaces.setAttribute(
+        "aria-label",
+        `Aller à la page Mes espaces, ${libelleFavoris}`
+    );
+}
 
 function calculerPrefixeChemin() {
-    // Rôle : Calculer le bon chemin vers la racine du site selon la page actuelle
-    // Paramètres : Le préfixe à ajouter devant les liens ("./" ou "../")
+    // Adapter les liens selon la profondeur de la page.
 
-    // Récupérer le nom ou le chemin de la page actuelle dans le navigateur
     const cheminActuel = window.location.pathname;
 
-    // Vérifier si l'utilisateur se trouve dans le sous-dossier "pages"
-    // Si l'adresse contient le mot "pages/", nous sommes sur une page intérieure
     if (cheminActuel.includes("pages/")) {
         return "../"; // Revenir en arrière d'un dossier
     } else {
@@ -26,15 +63,14 @@ function calculerPrefixeChemin() {
 }
 
 function integrerHeaderDynamique() {
-    // Rôle : Injecter le Header avec les bons liens calculés dynamiquement
+    // Construire le même menu sur chaque page.
 
     const headerBalise = document.querySelector("header");
     
     if (headerBalise) {
-        // Récupérer le préfixe magique calculé par notre fonction
+
         const prefixe = calculerPrefixeChemin();
 
-        // Injecter le code HTML sémantique avec la variable ${prefixe} devant les liens pour éviter les liens brisés
         headerBalise.innerHTML = `
             <div class="header__container">
                 
@@ -78,8 +114,16 @@ function integrerHeaderDynamique() {
 
             </div>
         `;
+
+        mettreAJourCompteurFavoris();
     }
 }
 
-// Lancer l'injection dès que la structure HTML de base est prête
+// Injecter le menu lorsque le document est prêt.
 document.addEventListener("DOMContentLoaded", integrerHeaderDynamique);
+
+window.addEventListener("storage", event => {
+    if (event.key === FAVORIS_STORAGE_KEY) {
+        mettreAJourCompteurFavoris();
+    }
+});

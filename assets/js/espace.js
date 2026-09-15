@@ -34,6 +34,7 @@ async function initFicheEspace() {
 
         // Afficher seulement la fiche qui correspond à l’identifiant.
         alimenterDonneesFiche(espace);
+        gererBoutonFavoris(espace.id, espace.nom);
         zoneChargement.replaceChildren();
         zoneContenu.hidden = false;
     } catch (error) {
@@ -89,6 +90,39 @@ function alimenterDonneesFiche(espace) {
         element.innerHTML = `${creerIconeEquipement(equipement)}<span>${equipement}</span>`;
         liste.appendChild(element);
     });
+}
+
+function gererBoutonFavoris(espaceId, nomEspace) {
+    // Relier le bouton de la fiche au stockage commun.
+    const bouton = document.getElementById("btn-toggle-favoris");
+    const icone = bouton?.querySelector(".btn-fav-icon");
+    const texte = bouton?.querySelector(".btn-fav-text");
+    if (!bouton || !icone || !texte) return;
+
+    function actualiserBouton() {
+        // Montrer si l’espace est déjà enregistré.
+        const estFavori = lireFavoris().includes(espaceId);
+        bouton.setAttribute("aria-pressed", String(estFavori));
+        bouton.setAttribute("aria-label", estFavori ? `Retirer ${nomEspace} de mes favoris` : `Ajouter ${nomEspace} à mes favoris`);
+        bouton.classList.toggle("is-active", estFavori);
+        icone.src = estFavori ? "../assets/icons/ico_coeur-plein.svg" : "../assets/icons/ico_coeur.svg";
+        texte.textContent = estFavori ? "Sauvegardé en favoris" : "Ajouter aux favoris";
+    }
+
+    bouton.addEventListener("click", () => {
+        // Ajouter ou retirer l’identifiant sans créer de doublon.
+        const favoris = lireFavoris();
+        const nouvelleListe = favoris.includes(espaceId)
+            ? favoris.filter(id => id !== espaceId)
+            : [...favoris, espaceId];
+
+        if (enregistrerFavoris(nouvelleListe)) {
+            actualiserBouton();
+            mettreAJourCompteurFavoris(nouvelleListe);
+        }
+    });
+
+    actualiserBouton();
 }
 
 // Lancer le chargement lorsque le document est prêt.

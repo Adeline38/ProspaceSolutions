@@ -1,11 +1,9 @@
-/* ================================================= */
-/* === BOUTONS ET LIENS D'ACTION === */
-/* ================================================= */
+/* Présenter les boutons et montrer clairement leur état actif. */
 
 @use "../abstract/variables" as *;
 @use "../abstract/mixins" as *;
 
-/* Classe générale disponible pour les prochains boutons */
+
 .btn {
   @include bouton($couleur-bleu-bouton, $couleur-blanc);
 
@@ -14,8 +12,8 @@
   }
 
   &:focus-visible {
-    outline: 3px solid $couleur-bleu-prospace;
-    outline-offset: 3px;
+    outline: 2px solid $couleur-bleu-prospace;
+    outline-offset: 2px;
   }
 
   &-favoris {
@@ -40,11 +38,19 @@
       background-color: $couleur-rose-favoris;
       color: $couleur-blanc;
     }
+    &[aria-pressed="true"] .icon-svg,
+    &.is-active .icon-svg {
+      fill: currentColor;
+    }
+
+    svg {
+      width:24px;
+    }
   }
 
 }
 
-/* Le parent rend cette règle prioritaire sur les liens génériques du footer */
+
 .footer__wrapper .btn-footer {
   @include flex-center(row, flex-start, center, $espace-petit);
   color: $couleur-bleu-prospace;
@@ -62,7 +68,7 @@
   font-weight: 600;
 
   &:hover,
-  &:focus {
+  &:focus-visible {
     background-color: $couleur-bleu-bouton-hover;
   }
 
@@ -71,5 +77,44 @@
     position: absolute;
     inset: 0;
     z-index: 1;
+  }
+}
+
+
+.btn-secondary {
+  @include bouton($couleur-bleu-bouton, $couleur-blanc);
+  width: 100%;
+  min-height: 48px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+
+  .icon-svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $couleur-bleu-prospace;
+    outline-offset: 2px;
+  }
+  border: 2px solid $couleur-rose-favoris;
+  background-color: rgba($couleur-rose-favoris, 0.04);
+  color: $couleur-rose-favoris;
+
+  .icon-svg {
+    filter: invert(25%) sepia(97%) saturate(4146%) hue-rotate(337deg)
+      brightness(102%) contrast(102%);
+  }
+
+  &:hover,
+  &.is-active,
+  &[aria-pressed="true"] {
+    background-color: rgba($couleur-rose-favoris, 0.1);
   }
 }
