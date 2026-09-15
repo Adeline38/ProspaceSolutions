@@ -77,7 +77,7 @@ footer {
   }
 }
 
-@include respond-below($breakpoint-large) {
+@include media-queries($breakpoint-large) {
   .footer__container {
     padding: $espace-grand 0;
   }
@@ -93,7 +93,7 @@ footer {
   }
 }
 
-@include respond-below($breakpoint-tablette) {
+@include media-queries($breakpoint-tablette) {
   .footer__container,
   .footer__bottom {
     display: flex;
@@ -110,7 +110,7 @@ footer {
   }
 }
 
-@include respond-below($breakpoint-mobile) {
+@include media-queries($breakpoint-mobile) {
   .footer__wrapper,
   .footer__bottom {
     display: flex;

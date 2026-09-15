@@ -1,44 +1,34 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Retrouver les espaces enregistrés sur ProSpace Solutions.">
+    <title>Mes espaces favoris | ProSpace Solutions</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <!-- Charger les outils communs avant la page -->
+    <script src="../assets/js/header.js"></script>
+    <script src="../assets/js/footer.js"></script>
+  </head>
+  <body>
+    <!-- Injecter le menu et sa pastille -->
+    <header class="header"></header>
 
-        <title>ProSpace Solutions</title>
+    <!-- Afficher la sélection enregistrée dans le navigateur -->
+    <main class="main-mes-espaces">
+      <section class="mes-espaces">
+        <div class="mes-espaces__container">
+          <h1>Mes espaces</h1>
+          <p>Espaces dans votre sélection</p>
+          <div id="favoris-feedback" aria-live="polite"></div>
+          <div class="catalogue__wrapper" id="liste-favoris"></div>
+        </div>
+      </section>
+    </main>
 
-        <!---->
-        <link rel="stylesheet" href="../assets/css/styles.css">
-        <!---->
-        <link rel="apple-touch-icon" sizes="180x180" href="public/_favicon_io/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="public/_favicon_io/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="public/_favicon_io/favicon-16x16.png">
-        <!--link rel="manifest" href="public/assets/img/_favicon_io/site.webmanifest"-->
-
-        <!-- Script de l'affichage dynamique du header -->
-        <script src="../assets/js/header.js"></script>
-        <!-- Script de l'affichage dynamique du footer -->
-        <script src="../assets/js/footer.js"></script>
-
-    </head>
-
-    <body>
-        <!-- === HEADER container === -->
-        <header class="header" id="accueil"><!-- INJECTION par header.js --></header>
-
-        <!-- ================================================= -->
-        <!-- === MAIN container === -->
-        <!-- ================================================= -->
-        <main class="main-contact">
-
-            <p style="place-self: center;">En cours...</p>
-
-        </main>
-        
-        <!-- === FOOTER et liens de bas de page === -->
-        <footer class="footer"><!-- INJECTION par footer.js --></footer>
-
-        <!-- Script de l'affichage dynamique du détail d'un espace -->
-        <script src="../assets/js/espace.js" defer></script>
-    </body>
+    <!-- Injecter le pied de page commun -->
+    <footer class="footer"></footer>
+    <!-- Construire la liste après la création du document -->
+    <script src="../assets/js/mes-espaces.js" defer></script>
+  </body>
 </html>

@@ -53,7 +53,7 @@
 }
 
 /* Place les règles destinées aux écrans plus petits que la valeur donnée */
-@mixin respond-below($breakpoint) {
+@mixin media-queries($breakpoint) {
   @media (max-width: $breakpoint) {
     @content;
   }

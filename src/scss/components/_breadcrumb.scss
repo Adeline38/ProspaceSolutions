@@ -1,3 +1,59 @@
 /* ================================================= */
 /* === BREADCRUMB === */
 /* ================================================= */
+
+@use "../abstract/variables" as *;
+@use "../abstract/mixins" as *;
+
+.breadcrumb {
+  padding-top: 34px;
+  background-color: $couleur-bleu-pale;
+
+  &__container {
+    @include container;
+    padding-inline: $espace-grand;
+  }
+
+  ol {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    color: $couleur-gris-moyen;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    & + li::before {
+      content: "›";
+      color: $couleur-gris-moyen;
+      font-size: 18px;
+      font-weight: 400;
+    }
+
+    &[aria-current="page"] {
+      color: $couleur-bleu-nuit;
+      font-weight: 600;
+    }
+  }
+
+  a:hover {
+    color: $couleur-bleu-bouton;
+    text-decoration: underline;
+  }
+}
+
+@include media-queries($breakpoint-tablette) {
+  .breadcrumb {
+    padding-top: $espace-grand;
+
+    &__container {
+      width: 100%;
+    }
+  }
+}

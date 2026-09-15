@@ -7,13 +7,25 @@
 
 section.catalogue {
   @include flex-center(column);
-  background-color: $couleur-bleu-pale;
+  background-color: $couleur-bleu-pale;  
+
+  h2 {
+    @include flex-center(column, start, start, 0);
+    color: $couleur-bleu-nuit;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 28px;
+    /**/
+    width: 100%;
+    max-width: $largeur-conteneur-enfant;
+    padding: $espace-tres-grand $espace-grand 0;
+  }
 }
 
 .catalogue__container {
   @include flex-center(column);
   max-width: $largeur-conteneur-enfant;
-  padding: 56px $espace-grand;
+  padding: 25px $espace-grand 0;
 }
 
 .catalogue__wrapper {
@@ -23,7 +35,7 @@ section.catalogue {
   width: 100%;
 }
 
-@include respond-below($breakpoint-tablette) {
+@include media-queries($breakpoint-tablette) {
   .catalogue__container,
   .catalogue__wrapper {
     display: flex;
@@ -36,11 +48,16 @@ section.catalogue {
   }
 }
 
-@include respond-below($breakpoint-mobile) {
+@include media-queries($breakpoint-mobile) {
   .catalogue__container,
   .catalogue__wrapper {
     width: unset;
     max-width: $breakpoint-mobile;
     height: unset;
   }
+
+  section.catalogue h2 {
+    align-items: start;
+    padding-left: 0;
+}
 }

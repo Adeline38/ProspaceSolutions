@@ -1,3 +1,28 @@
-/* ================================================= */
-/* === SECTIONS PROPRES À LA PAGE MES ESPACES === */
-/* ================================================= */
+/* Présenter la page qui rassemble les espaces favoris. */
+
+@use "../abstract/variables" as *;
+@use "../abstract/mixins" as *;
+
+.main-mes-espaces {
+  min-height: 70vh;
+  padding-block: $espace-tres-grand;
+  background-color: $couleur-bleu-pale;
+}
+
+.mes-espaces__container {
+  @include container;
+
+  > p {
+    margin: $espace-petit 0 $espace-grand;
+    color: $couleur-gris-texte;
+  }
+}
+
+#favoris-feedback {
+  margin-bottom: $espace-grand;
+}
+
+.btn-retirer-favori {
+  @include bouton($couleur-rose-favoris, $couleur-blanc);
+  margin-top: $espace-moyen;
+}

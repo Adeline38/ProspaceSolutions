@@ -11,6 +11,10 @@ section.filtre {
   width: 100%;
   border: 1px solid $couleur-gris-clair-clair;
   background-color: $couleur-blanc;
+  /**/  
+  position: sticky;
+  z-index: 900;
+  top: $hauteur-header;
 }
 
 .filtre__wrapper {
@@ -68,8 +72,18 @@ section.filtre {
     color: $couleur-bleu-nuit;
     font-size: 14px;
     font-weight: 400;
+    
+    &:focus-visible {
+      outline: 2px solid $couleur-bleu-prospace;
+      outline-offset: 2px;
+    }
   }
 }
+
+/* select:focus, input:focus, textarea:focus {
+    border-color: #38bdf8;
+    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.25);
+} */
 
 .field-wrapper select {
   width: 100%;
@@ -104,6 +118,11 @@ section.filtre {
   border: 1px solid $couleur-gris-souris;
   border-radius: 2px;
   background-color: $couleur-blanc;
+    
+  &:focus-visible {
+    outline: 2px solid $couleur-bleu-prospace;
+    outline-offset: 2px;
+  }
 
   span {
     color: $couleur-gris-ardoise;
@@ -113,14 +132,12 @@ section.filtre {
   }
 }
 
-@include respond-below($breakpoint-tablette) {
-  .filtre,
-  .filtre__wrapper,
-  .filtre__wrapper fieldset:nth-of-type(1) {
+@include media-queries($breakpoint-tablette) {
+  .filtre, .filtre__wrapper, .filtre__wrapper fieldset:nth-of-type(1) {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     width: 100%;
     max-width: $breakpoint-tablette;
     height: unset;
@@ -135,12 +152,21 @@ section.filtre {
   }
 }
 
-@include respond-below($breakpoint-mobile) {
+@include media-queries($breakpoint-mobile) {
   .filtre,
   .filtre__wrapper {
     flex-direction: column;
     width: unset;
     max-width: $breakpoint-mobile;
     height: unset;
+  }
+
+  section.filtre {
+    position: sticky;
+    z-index: 900;
+    top: $hauteur-header;
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
   }
 }
