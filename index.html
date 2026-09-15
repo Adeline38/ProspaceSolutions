@@ -3,9 +3,12 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
 
-        <title>ProSpace Solutions</title>
+        <!-- Décrire précisément le contenu de la page aux moteurs de recherche -->
+        <meta name="description" content="Trouvez des salles de réunion, bureaux privatifs et espaces de coworking disponibles à la demande dans les grandes villes françaises.">
+
+        <!-- Nommer clairement la page dans l'onglet du navigateur et les résultats de recherche -->
+        <title>Location d’espaces de travail en France | ProSpace Solutions</title>
 
         <!---->
         <link rel="stylesheet" href="assets/css/styles.css">
@@ -23,16 +26,24 @@
     </head>
 
     <body>
+
+        <!-- Permettre aux utilisateurs du clavier d'atteindre directement le contenu principal -->
+        <a class="skip-link" href="#contenu-principal">
+            Aller au contenu principal
+        </a>
+
         <!-- === HEADER container === -->
         <header class="header" id="accueil"><!-- INJECTION par header.js --></header>
 
         <!-- ================================================= -->
         <!-- === MAIN container === -->
         <!-- ================================================= -->
-        <main class="main">
+        <!-- Donner une destination au lien d’évitement -->
+        <main id="contenu-principal">
 
             <!-- === BANNIERE principale === -->
-            <section class="hero">
+            <!-- Relier la bannière à son titre principal pour mieux décrire cette section -->
+            <section class="hero hero__banner" aria-labelledby="main-title">
 
                 <h2 class="sr-only">Introduction</h2>
 
@@ -93,9 +104,13 @@
             <!-- ================================================= -->
             <section class="filtre">
 
-                <h2 class="sr-only">Filtres de tri des espaces</h2>
+                <!-- Conserver le titre pour les lecteurs d’écran sans l’afficher -->
+                <h2 id="titre-filtres" class="sr-only">
+                    Filtres de recherche des espaces
+                </h2>
 
-                <form class="filtre__wrapper" aria-label="">
+                <!-- Relier le formulaire au titre placé juste avant -->
+                <form class="filtre__wrapper" aria-labelledby="titre-filtres">
 
                     <!-- Titre & Icône de la zone de filtre -->
                     <div class="title filtre-block _block-title">
@@ -173,13 +188,28 @@
             <!-- ================================================= -->
             <!-- === CATALOGUE des espaces disponibles === -->
             <!-- ================================================= -->
-            <section class="catalogue">
+            <!-- Regrouper le compteur, les messages et les cartes du catalogue -->
+            <section class="catalogue" aria-labelledby="catalogue-title">
 
-                <h2>6 espaces disponibles</h2>
+                <!-- Afficher puis annoncer le nombre de résultats -->
+                <h2 id="catalogue-title" aria-live="polite">
+                    Chargement des espaces…
+                </h2>
 
+                <!-- Annoncer le chargement, les résultats et les erreurs sans changer de page -->
+                <div id="catalogue-status" class="catalogue-status" role="status" aria-live="polite" aria-atomic="true"></div>
+
+                <!-- Recevoir les cartes créées par main.js -->
                 <div class="catalogue__container">
-                    <div class="catalogue__wrapper"><!-- INJECTION par main.js --></div>
-                </div>                
+                    <div class="catalogue__wrapper"></div>
+                </div>
+
+                <!-- Afficher ce message uniquement si JavaScript est désactivé -->
+                <noscript>
+                    <p>
+                        Activez JavaScript pour afficher les espaces.
+                    </p>
+                </noscript>
 
             </section>
             

@@ -1,4 +1,12 @@
-/* Afficher, filtrer et rendre les cartes de l’accueil enregistrables. */
+/* Rendre les cartes de l’accueil accessibles et enregistrables. */
+
+// Conserver les espaces chargés pour pouvoir les filtrer sans refaire de requête
+let totalEspaces = []; // Son utilité est de filtrer plusieurs fois le catalogue sans télécharger de nouveau le JSON
+
+// Éviter d'installer plusieurs fois les mêmes événements sur les boutons favoris, mémorise si les clics sur les favoris sont déjà surveillés.
+
+let gestionFavorisActive = false;
+
 
 function mettreAJourBoutonsFavoris(targetContainer, listeEspaces) {
     // Synchroniser les cœurs avec la liste commune des favoris.
@@ -65,8 +73,32 @@ function activerGestionFavoris(targetContainer, listeEspaces) {
     });
 }
 
+/**/
+
+function mettreAJourNombreEspaces(nombre) {
+    // Chercher le titre placé au-dessus du catalogue.
+    const titreCatalogue = document.getElementById(
+        "catalogue-title"
+    );
+
+    // Arrêter la fonction si le titre n’existe pas.
+    if (!titreCatalogue) return;
+
+    // Adapter la phrase au nombre de résultats.
+    if (nombre === 0) {
+        titreCatalogue.textContent = "Aucun espace disponible";
+    } else if (nombre === 1) {
+        titreCatalogue.textContent = "1 espace disponible";
+    } else {
+        titreCatalogue.textContent =
+            `${nombre} espaces disponibles`;
+    }
+}
+
+/**/
+
 async function initCatalogue() {
-    // Charger le catalogue puis activer les filtres et les favoris.
+    // Charger le catalogue puis activer les filtres et les favoris
 
     document.title = "Location d'Espaces de Travail Flexibles & Salles de Réunion | ProSpace Solutions";
 
@@ -124,7 +156,13 @@ async function initCatalogue() {
 
         if (spinnerContainer) spinnerContainer.style.display = "none";
 
+        // Afficher toutes les cartes obtenues depuis le JSON
         renderEspaces(totalEspaces, container);
+
+        // Afficher par exemple « 6 espaces disponibles »
+        mettreAJourNombreEspaces(totalEspaces.length);
+
+        // Activer ensuite les boutons favoris
         activerGestionFavoris(container, totalEspaces);
 
         if (filterForm) {
@@ -183,13 +221,13 @@ function renderEspaces(listeEspaces, targetContainer) {
             let svgIcon = "";
 
             if (item === "Fibre") {
-                svgIcon = `<svg aria-hidden="true" focusable="false" xmlns="http://w3.org" width="15" height="15" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="icon-svg lucide lucide-wifi" viewBox="0 0 24 24"><path d="M12 20h.01M2 8.82a15 15 0 0 1 20 0M5 12.859a10 10 0 0 1 14 0M8.5 16.429a5 5 0 0 1 7 0"/></svg>`;
+                svgIcon = `<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="icon-svg lucide lucide-wifi" viewBox="0 0 24 24"><path d="M12 20h.01M2 8.82a15 15 0 0 1 20 0M5 12.859a10 10 0 0 1 14 0M8.5 16.429a5 5 0 0 1 7 0"/></svg>`;
 
             } else if (item === "PMR") {
-                svgIcon = `<svg aria-hidden="true" focusable="false" xmlns="http://w3.org" width="15" height="15" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="icon-svg lucide lucide-accessibility" viewBox="0 0 24 24"><circle cx="16" cy="4" r="1"/><path d="m18 19 1-7-6 1M5 8l3-3 5.5 3-2.36 3.5M4.24 14.5a5 5 0 0 0 6.88 6"/><path d="M13.76 17.5a5 5 0 0 0-6.88-6"/></svg>`;
+                svgIcon = `<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="icon-svg lucide lucide-accessibility" viewBox="0 0 24 24"><circle cx="16" cy="4" r="1"/><path d="m18 19 1-7-6 1M5 8l3-3 5.5 3-2.36 3.5M4.24 14.5a5 5 0 0 0 6.88 6"/><path d="M13.76 17.5a5 5 0 0 0-6.88-6"/></svg>`;
 
             } else if (item === "4K") {
-                svgIcon = `<svg aria-hidden="true" focusable="false" xmlns="http://w3.org" width="15" height="15" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="icon-svg lucide lucide-monitor" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8M12 17v4"/></svg>`;
+                svgIcon = `<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="icon-svg lucide lucide-monitor" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8M12 17v4"/></svg>`;
             }
 
             return `
@@ -220,7 +258,7 @@ function renderEspaces(listeEspaces, targetContainer) {
                 <div class="card-rating">
                     <div class="stars" aria-hidden="true">
                         <span>
-                            <svg aria-hidden="true" focusable="false" xmlns="http://w3.org" width="15" height="15" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="icon-svg lucide lucide-star" viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.12 2.12 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.12 2.12 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.12 2.12 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.12 2.12 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.12 2.12 0 0 0 1.597-1.16z"/></svg>
+                            <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="icon-svg lucide lucide-star" viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.12 2.12 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.12 2.12 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.12 2.12 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.12 2.12 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.12 2.12 0 0 0 1.597-1.16z"/></svg>
                         </span>
                     </div>
                     <strong class="rating-value">${espace.note.toFixed(1)}</strong>
@@ -229,7 +267,7 @@ function renderEspaces(listeEspaces, targetContainer) {
                 
                 <div class="card-details-row">
                     <div class="card-capacite">
-                        <svg aria-hidden="true" focusable="false" xmlns="http://w3.org" width="15" height="15" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="icon-svg lucide lucide-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="icon-svg lucide lucide-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                         <span id="nb-capacite">${espace.capacite}</span><span>pers.</span>
                     </div>
                     <div class="card-tags">
@@ -255,6 +293,8 @@ function renderEspaces(listeEspaces, targetContainer) {
 
     mettreAJourBoutonsFavoris(targetContainer, listeEspaces);
 }
+
+/**/
 
 function filtrerCatalogue(listeComplete, targetContainer, criteres) {
     // Conserver uniquement les espaces correspondant à tous les critères.
@@ -297,7 +337,12 @@ function filtrerCatalogue(listeComplete, targetContainer, criteres) {
         espacesFiltres = espacesFiltres.filter(espace => espace.equipements.includes("4K"));
     }
 
-    renderEspaces(espacesFiltres, targetContainer);
+    // Afficher uniquement les espaces qui correspondent aux filtres
+renderEspaces(espacesFiltres, targetContainer);
+
+// Afficher le nombre correspondant aux cartes visibles
+mettreAJourNombreEspaces(espacesFiltres.length);
+
 }
 
 document.addEventListener("DOMContentLoaded", () => {

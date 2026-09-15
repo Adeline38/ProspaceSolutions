@@ -1,8 +1,4 @@
-/* ================================================= */
-/* === CHARTE GRAPHIQUE PROSPACE === */
-/* ================================================= */
-
-/* Couleurs principales */
+/* Définir les couleurs principales de ProSpace. */
 $transparent: transparent;
 $couleur-noir: #000000;
 $couleur-bleu-nuit: #0f172a;
@@ -12,52 +8,51 @@ $couleur-bleu-bouton: #0284c7;
 $couleur-bleu-bouton-hover: #0369a1;
 $couleur-blanc: #ffffff;
 
-/* Couleurs secondaires */
+/* Définir les couleurs secondaires et accessibles. */
 $couleur-gris-pale: #f1f5f9;
 $couleur-gris-clair: #cad5e2;
 $couleur-gris-clair-clair: #e2e8f0;
-$couleur-gris-favoris: #b0b0b0;
-$couleur-gris-moyen: #90a1b9;
+$couleur-gris-favoris: #767676;
+$couleur-gris-moyen: #64748b;
 $couleur-gris-souris: #767676;
-$couleur-gris-texte: #62748e;
+$couleur-gris-texte: #475569;
 $couleur-gris-ardoise: #45556c;
-$couleur-gris-champ: #cbd5e0;
+$couleur-gris-champ: #94a3b8;
 $couleur-texte-champ: #2d3748;
 $couleur-texte-checkbox: #4a5568;
 $couleur-fond-tag: #edf2f7;
-$couleur-rose-favoris: #ff2056;
-$couleur-jaune-etoile: #ffb900;
-$couleur-spinner: #3498db;
+$couleur-rose-favoris: #c2185b;
+$couleur-jaune-etoile: #a16207;
+$couleur-spinner: #0277bd;
+$couleur-erreur: #d32f2f;
 
-/* Transparences */
+/* Définir les transparences réutilisables. */
 $couleur-blanc-10: #ffffff10;
 $couleur-blanc-20: #ffffff20;
 $couleur-blanc-90: #ffffff90;
 $couleur-ombre: #00000010;
 
-/* Espacements réutilisés */
+/* Définir les espaces réutilisables. */
 $espace-tres-petit: 4px;
 $espace-petit: 8px;
 $espace-moyen: 16px;
 $espace-grand: 24px;
 $espace-tres-grand: 64px;
 
-/* Arrondis */
+/* Définir les arrondis réutilisables. */
 $arrondi-tres-petit: 4px;
 $arrondi-petit: 10px;
 $arrondi-moyen: 12px;
 $arrondi-grand: 20px;
 $arrondi-rond: 50%;
 
-/* Dimensions */
+/* Définir les dimensions principales. */
 $largeur-conteneur: 1280px;
 $largeur-conteneur-enfant: 78vw;
 $hauteur-header: 64px;
-
-/* Points de rupture existants dans la maquette */
 $breakpoint-large: 1240px;
 $breakpoint-tablette: 795px;
 $breakpoint-mobile: 480px;
 
-/* Typographie */
+/* Définir la police principale. */
 $police-principale: "SF Pro Display", Arial, sans-serif;

@@ -8,6 +8,7 @@
 section.catalogue {
   @include flex-center(column);
   background-color: $couleur-bleu-pale;  
+  padding-bottom: $hauteur-header;
 
   h2 {
     @include flex-center(column, start, start, 0);

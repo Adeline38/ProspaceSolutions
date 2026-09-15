@@ -13,10 +13,15 @@
   gap: $gap;
 }
 
-/* Donne la même largeur aux grands conteneurs du site */
+/* Donner la même largeur aux grandes zones du site. */
 @mixin container {
-  width: $largeur-conteneur-enfant;
+  /* Conserver une petite marge sur les côtés du mobile. */
+  width: calc(100% - 32px);
+
+  /* Empêcher le contenu de devenir trop large sur un grand écran. */
   max-width: $largeur-conteneur;
+
+  /* Centrer horizontalement le conteneur. */
   margin-inline: auto;
 }
 
@@ -58,3 +63,5 @@
     @content;
   }
 }
+
+

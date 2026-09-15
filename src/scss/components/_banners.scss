@@ -9,18 +9,25 @@ section.hero {
   @include flex-center(column);
   position: relative;
   width: 100%;
-  min-height: 602px;
+
+  /* Laisser le contenu définir la hauteur sur les petits écrans. */
+  min-height: auto;
   background-color: $couleur-bleu-nuit;
 }
 
 .hero__banner {
+  /* Assombrir la photographie pour conserver un texte blanc lisible. */
   background-image:
-    linear-gradient(to top, $couleur-noir 0%, $couleur-bleu-nuit 60%),
+    linear-gradient(
+      90deg,
+      rgba($couleur-bleu-nuit, 0.98) 0%,
+      rgba($couleur-bleu-nuit, 0.88) 50%,
+      rgba($couleur-bleu-nuit, 0.55) 100%
+    ),
     url("../images/banner-prospace-solution.webp");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-origin: border-box;
 }
 
 .hero__wrapper {
