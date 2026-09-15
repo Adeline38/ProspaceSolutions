@@ -118,3 +118,21 @@
     background-color: rgba($couleur-rose-favoris, 0.1);
   }
 }
+
+/* Présenter le bouton principal du formulaire et de la fiche. */
+.btn-primary {
+  @include bouton($couleur-bleu-bouton, $couleur-blanc);
+  @include box-shadow(0, 8px, 18px, -8px, rgba(2, 132, 199, 0.65));
+  width: 100%;
+  min-height: 48px;
+  font-weight: 600;
+
+  &:hover {
+    background-color: $couleur-bleu-bouton-hover;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $couleur-bleu-prospace;
+    outline-offset: 2px;
+  }
+}

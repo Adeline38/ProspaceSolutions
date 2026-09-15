@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contacter l’équipe ProSpace Solutions.">
+    <title>Contact | ProSpace Solutions</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <!-- Charger les éléments communs du site -->
+    <script src="../assets/js/header.js"></script>
+    <script src="../assets/js/footer.js"></script>
+  </head>
+  <body>
+    <!-- Injecter le menu commun -->
+    <header class="header"></header>
+
+    <!-- Regrouper la présentation et le formulaire -->
+    <main class="main-contact">
+      <section class="contact-hero">
+        <div class="contact-hero__container">
+          <p class="contact-hero__badge">Nous écrire</p>
+          <h1>Contactez nos équipes</h1>
+          <p>Présentez votre projet. Notre équipe vous répond sous deux heures ouvrées.</p>
+        </div>
+      </section>
+
+      <div class="contact-body-layout">
+        <div class="contact-body-layout__container">
+          <!-- Recueillir les informations nécessaires à la demande -->
+          <section class="contact-form-section">
+            <h2>Formulaire de contact</h2>
+            <p>* Champs obligatoires</p>
+
+            <form id="form-contact-b2b" class="contact-form" novalidate>
+              <div class="form-group">
+                <label for="contact-name">Nom complet *</label>
+                <input type="text" id="contact-name" name="name" required>
+                <span class="error-text" id="error-name"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-email">Email professionnel *</label>
+                <input type="email" id="contact-email" name="email" required>
+                <span class="error-text" id="error-email"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-company">Entreprise *</label>
+                <input type="text" id="contact-company" name="company" required>
+                <span class="error-text" id="error-company"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-phone">Téléphone</label>
+                <input type="tel" id="contact-phone" name="phone">
+              </div>
+
+              <div class="form-group form-group--large">
+                <label for="contact-subject">Sujet</label>
+                <input type="text" id="contact-subject" name="subject">
+              </div>
+
+              <div class="form-group form-group--large">
+                <label for="contact-message">Message *</label>
+                <textarea id="contact-message" name="message" rows="6" required></textarea>
+                <span class="error-text" id="error-message"></span>
+              </div>
+
+              <div class="form-group-checkbox form-group--large">
+                <label for="contact-rgpd">
+                  <input type="checkbox" id="contact-rgpd" name="rgpd" required>
+                  <span>J’accepte le traitement de mes données personnelles. *</span>
+                </label>
+                <span class="error-text" id="error-rgpd"></span>
+              </div>
+
+              <button type="submit" class="btn-primary">Envoyer le message</button>
+              <!-- Confirmer ou refuser l’envoi côté navigateur -->
+              <div id="form-feedback-zone"></div>
+            </form>
+          </section>
+
+          <!-- Donner les coordonnées utiles à côté du formulaire -->
+          <aside class="contact-sidebar">
+            <section class="info-card dark-card">
+              <h2>ProSpace Solutions</h2>
+              <p>14 Avenue de Wagram, 75008 Paris</p>
+              <p>+33 1 42 56 78 90</p>
+              <p>contact@prospace-solutions.fr</p>
+              <p>Lundi au vendredi : 9h00 à 18h00</p>
+            </section>
+            <section class="info-card alert-card">
+              <h2>Réponse rapide garantie</h2>
+              <p>Recevez une réponse sous deux heures ouvrées.</p>
+            </section>
+            <section class="info-card testimonial-card">
+              <h2>Avis client</h2>
+              <blockquote><p>« L’équipe est réactive et à l’écoute. »</p><cite>Charlotte M., Nexeo Group</cite></blockquote>
+            </section>
+          </aside>
+        </div>
+      </div>
+
+      <!-- Indiquer la localisation du siège social -->
+      <section class="contact-footer-map" aria-label="Localisation du siège social">
+        <div class="contact-footer-map__container">
+          <p><strong>14 Avenue de Wagram, 75008 Paris</strong></p>
+          <a href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer">Voir sur Google Maps</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Injecter le pied de page commun -->
+    <footer class="footer"></footer>
+    <!-- Activer le préremplissage et la validation -->
+    <script src="../assets/js/contact.js" defer></script>
+  </body>
+</html>
