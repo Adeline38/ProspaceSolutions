@@ -35,6 +35,7 @@ async function initFicheEspace() {
         // Afficher seulement la fiche qui correspond à l’identifiant.
         alimenterDonneesFiche(espace);
         gererBoutonFavoris(espace.id, espace.nom);
+        gererRedirectionContact(espace.nom);
         zoneChargement.replaceChildren();
         zoneContenu.hidden = false;
     } catch (error) {
@@ -123,6 +124,14 @@ function gererBoutonFavoris(espaceId, nomEspace) {
     });
 
     actualiserBouton();
+}
+
+function gererRedirectionContact(nomEspace) {
+    // Ajouter le nom de l’espace à l’adresse du formulaire.
+    const lienContact = document.getElementById("btn-contact-team");
+    if (!lienContact) return;
+
+    lienContact.href = `contact.html?espace=${encodeURIComponent(nomEspace)}`;
 }
 
 // Lancer le chargement lorsque le document est prêt.
