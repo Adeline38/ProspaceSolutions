@@ -13,6 +13,7 @@ function afficherErreur(champ, message) {
     // Écrire l’erreur dans la zone placée sous le champ.
     const zoneErreur = document.getElementById(`error-${champ.id.replace("contact-", "")}`);
     if (zoneErreur) zoneErreur.textContent = message;
+    champ.setAttribute("aria-invalid", String(message !== ""));
 }
 
 function validerChamp(champ) {
@@ -47,7 +48,9 @@ function activerValidationFormulaire() {
 
         // Simuler une confirmation sans contacter de serveur.
         feedback.textContent = "Votre message a bien été préparé. Merci !";
+        feedback.focus();
         formulaire.reset();
+        champs.forEach(champ => champ.setAttribute("aria-invalid", "false"));
     });
 }
 

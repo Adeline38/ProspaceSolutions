@@ -36,6 +36,7 @@
   object-fit: cover;
 }
 
+.card-content-wrapper button {z-index:1000;}
 .card-content-wrapper {
   display: flex;
   flex-grow: 1;

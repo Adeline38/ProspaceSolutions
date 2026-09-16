@@ -43,7 +43,9 @@ function afficherEspacesFavoris(espaces, conteneur) {
             <div class="card-content-wrapper">
                 <h3 class="card-title">${espace.nom}</h3>
                 <p>${espace.ville} ${espace.arrondissement || ""}</p>
-                <p><strong>${espace.prix} €</strong> par heure</p>
+                <p><strong>${espace.prix} €</strong> par heure</p>                
+            </div>
+            <div class="card-content-wrapper">                
                 <a class="card-main-link" href="espace.html?id=${encodeURIComponent(espace.id)}">Voir la fiche</a>
                 <button type="button" class="btn-retirer-favori" data-id="${espace.id}">Retirer des favoris</button>
             </div>

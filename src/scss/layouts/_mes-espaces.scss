@@ -1,28 +1,283 @@
-/* Présenter la page qui rassemble les espaces favoris. */
+/* Présenter la page des espaces sauvegardés. */
 
 @use "../abstract/variables" as *;
 @use "../abstract/mixins" as *;
 
+/* Créer le fond clair et conserver suffisamment de hauteur. */
 .main-mes-espaces {
   min-height: 70vh;
-  padding-block: $espace-tres-grand;
+  padding-block: 48px $espace-tres-grand;
   background-color: $couleur-bleu-pale;
 }
 
+/* Limiter la largeur conformément à la maquette. */
 .mes-espaces__container {
   @include container;
-
-  > p {
-    margin: $espace-petit 0 $espace-grand;
-    color: $couleur-gris-texte;
-  }
+  max-width: 976px;
 }
 
-#favoris-feedback {
-  margin-bottom: $espace-grand;
+/* Empiler le titre et le bouton sur les petits écrans. */
+.mes-espaces__header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $espace-grand;
+  margin-bottom: 40px;
 }
 
-.btn-retirer-favori {
-  @include bouton($couleur-rose-favoris, $couleur-blanc);
+/* Mettre en valeur le titre principal. */
+.mes-espaces__header h1 {
+  margin: 0;
+  color: $couleur-bleu-nuit;
+  font-size: clamp(1.75rem, 5vw, 2.25rem);
+  line-height: 1.2;
+}
+
+/* Présenter le compteur comme une information secondaire. */
+.mes-espaces__count {
+  margin-top: $espace-petit;
+  color: $couleur-gris-moyen;
+}
+
+/* Présenter le bouton général comme une action dangereuse. */
+.mes-espaces__clear {
+  @include bouton($couleur-blanc, $couleur-erreur);
+  min-height: 44px;
+  border: 1px solid $couleur-erreur;
+  background-color: transparent;
+  font-weight: 600;
+}
+
+/* Montrer clairement le survol du bouton général. */
+.mes-espaces__clear:hover {
+  background-color: rgba($couleur-erreur, 0.08);
+}
+
+/* Dimensionner l’icône de suppression. */
+.mes-espaces__clear img {
+  width: 18px;
+  height: 18px;
+}
+
+/* Ranger toutes les cartes les unes sous les autres. */
+.favoris-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: $espace-moyen;
+}
+
+/* Occuper toute la largeur disponible sur mobile. */
+.favorite-card {
+  @include box-shadow(0, 3px, 10px, 0, rgba(15, 23, 42, 0.12));
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: none;
+  overflow: hidden;
+  border: 1px solid $couleur-gris-clair-clair;
+  border-radius: $arrondi-moyen;
+  background-color: $couleur-blanc;
+}
+
+/* Créer le cadre de la photographie mobile. */
+.favorite-card__image-wrapper {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 210px;
+  overflow: hidden;
+}
+
+/* Recadrer la photographie sans la déformer. */
+.favorite-card__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Empiler les informations et les actions sur mobile. */
+.favorite-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: $espace-grand;
+  min-width: 0;
+  padding: $espace-grand;
+}
+
+/* Permettre au texte d’occuper la place disponible. */
+.favorite-card__information {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Présenter le titre comme dans la maquette. */
+.favorite-card__title {
+  margin: 0 0 $espace-petit;
+  color: $couleur-bleu-nuit;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* Aligner la ville avec son icône. */
+.favorite-card__location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  color: $couleur-gris-texte;
+  font-size: 0.9rem;
+}
+
+/* Dimensionner les petites icônes informatives. */
+.favorite-card__location img,
+.favorite-card__capacity img {
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+}
+
+/* Regrouper la capacité, le prix et la note. */
+.favorite-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $espace-moyen;
   margin-top: $espace-moyen;
+  color: $couleur-gris-moyen;
+  font-size: 0.875rem;
+}
+
+/* Aligner la capacité et son icône. */
+.favorite-card__capacity {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Mettre le prix en évidence. */
+.favorite-card__price strong {
+  color: $couleur-bleu-bouton;
+  font-size: 1rem;
+}
+
+/* Aligner les étoiles et le nombre d’avis. */
+.favorite-card__rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Colorer les étoiles comme dans la maquette. */
+.favorite-card__stars {
+  color: $couleur-jaune-etoile;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+/* Empiler les boutons sur les écrans étroits. */
+.favorite-card__actions {
+  display: flex;
+  flex-direction: column;
+  gap: $espace-petit;
+}
+
+/* Présenter le lien bleu principal. */
+.favorite-card__view {
+  @include bouton($couleur-bleu-bouton, $couleur-blanc);
+  min-height: 44px;
+  border-radius: $arrondi-grand;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Assombrir le lien au survol. */
+.favorite-card__view:hover {
+  background-color: $couleur-bleu-bouton-hover;
+}
+
+/* Présenter le bouton Retirer avec une bordure rouge. */
+.favorite-card__remove {
+  @include bouton($couleur-blanc, $couleur-erreur);
+  min-height: 44px;
+  border: 1px solid $couleur-erreur;
+  border-radius: $arrondi-grand;
+  background-color: $couleur-blanc;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Colorer légèrement le bouton au survol. */
+.favorite-card__remove:hover {
+  background-color: rgba($couleur-erreur, 0.08);
+}
+
+/* Montrer clairement le focus du clavier. */
+.favorite-card__view:focus-visible,
+.favorite-card__remove:focus-visible {
+  outline: 3px solid $couleur-bleu-prospace;
+  outline-offset: 3px;
+}
+
+
+
+.favoris-list .card-espace-wrapper {
+  flex-direction: row;
+  width: 100%;
+  min-width: 100%;
+}
+
+.favoris-list .card-image-wrapper {
+  position: relative;
+  height: 100%;
+  object-fit: cover;
+  height: unset;
+  max-width: 200px;
+}
+
+.favoris-list .card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* Passer aux grandes cartes horizontales de la maquette. */
+@media (min-width: $breakpoint-tablette) {
+  .favorite-card {
+    flex-direction: row;
+    min-height: 136px;
+  }
+
+  /* Garder une photographie fixe à gauche. */
+  .favorite-card__image-wrapper {
+    flex: 0 0 208px;
+    width: 208px;
+    height: auto;
+    min-height: 136px;
+  }
+
+  /* Placer le contenu au centre et les actions à droite. */
+  .favorite-card__body {
+    flex-direction: row;
+    align-items: center;
+    gap: $espace-grand;
+    padding: 20px;
+  }
+
+  /* Conserver la plus grande largeur pour les informations. */
+  .favorite-card__information {
+    flex: 1 1 auto;
+  }
+
+  /* Aligner les boutons sur une seule ligne. */
+  .favorite-card__actions {
+    flex: 0 0 auto;
+    flex-direction: row;
+    align-items: center;
+    margin-left: auto;
+  }
 }

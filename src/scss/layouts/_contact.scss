@@ -75,8 +75,14 @@
 
 .error-text,
 #form-feedback-zone {
-  color: $couleur-rose-favoris;
+  color: $couleur-erreur;
   font-size: 0.875rem;
+}
+
+/* Montrer clairement le champ qui doit être corrigé. */
+.contact-form [aria-invalid="true"] {
+  border-color: $couleur-erreur;
+  outline: 2px solid rgba($couleur-erreur, 0.2);
 }
 
 .dark-card {

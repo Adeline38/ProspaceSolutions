@@ -3,135 +3,241 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Contacter l’équipe ProSpace Solutions.">
+    <!-- Fournir une description de secours avant le chargement du JSON -->
+    <meta name="description" content="Contactez ProSpace Solutions. Louez vos espaces de travail, flex-office et salles de réunion partout en France. Réponse garantie sous 2h.">
+
+    <!-- Fournir un titre de secours avant l’arrivée des données dynamiques -->
     <title>Contact | ProSpace Solutions</title>
+
+    <!---->
     <link rel="stylesheet" href="../assets/css/styles.css">
-    <!-- Charger les éléments communs du site -->
+    <!---->
+    <!-- Fournir un favicon standard reconnu par tous les navigateurs -->
+    <link rel="icon" href="../public/_favicon_io/favicon.ico" sizes="any">
+    <!-- Fournir une version PNG plus précise pour les navigateurs modernes -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../public/_favicon_io/favicon-32x32.png">
+    <!-- Fournir une petite version pour certains onglets -->
+    <link rel="icon"  type="image/png" sizes="16x16" href="../public/_favicon_io/favicon-16x16.png">
+    <!-- Fournir l’icône utilisée sur les appareils Apple -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../public/_favicon_io/apple-touch-icon.png">
+
     <script src="../assets/js/header.js"></script>
     <script src="../assets/js/footer.js"></script>
+
   </head>
+
   <body>
     <!-- Injecter le menu commun -->
     <header class="header"></header>
 
     <!-- Regrouper la présentation et le formulaire -->
     <main class="main-contact">
+
       <section class="contact-hero">
+
         <div class="contact-hero__container">
+
           <p class="contact-hero__badge">Nous écrire</p>
+
           <h1>Contactez nos équipes</h1>
+
           <p>Présentez votre projet. Notre équipe vous répond sous deux heures ouvrées.</p>
+
         </div>
+
       </section>
 
       <div class="contact-body-layout">
+
         <div class="contact-body-layout__container">
+
           <!-- Recueillir les informations nécessaires à la demande -->
           <section class="contact-form-section">
+
             <h2>Formulaire de contact</h2>
+
             <p>* Champs obligatoires</p>
 
             <form id="form-contact-b2b" class="contact-form" novalidate>
+
               <div class="form-group">
+
                 <label for="contact-name">Nom complet *</label>
-                <input type="text" id="contact-name" name="name" required>
-                <span class="error-text" id="error-name"></span>
+
+                <input type="text" id="contact-name" name="name" required aria-required="true" aria-describedby="error-name">
+
+                <span class="error-text" id="error-name" aria-live="polite"></span>
+
               </div>
 
               <div class="form-group">
+
                 <label for="contact-email">Email professionnel *</label>
-                <input type="email" id="contact-email" name="email" required>
-                <span class="error-text" id="error-email"></span>
+                <input type="email" id="contact-email" name="email" required aria-required="true" aria-describedby="error-email">
+                <span class="error-text" id="error-email" aria-live="polite"></span>
+
               </div>
 
               <div class="form-group">
+
                 <label for="contact-company">Entreprise *</label>
-                <input type="text" id="contact-company" name="company" required>
-                <span class="error-text" id="error-company"></span>
+                <input type="text" id="contact-company" name="company" required aria-required="true" aria-describedby="error-company">
+                <span class="error-text" id="error-company" aria-live="polite"></span>
+
               </div>
 
               <div class="form-group">
+
                 <label for="contact-phone">Téléphone</label>
                 <input type="tel" id="contact-phone" name="phone">
+
               </div>
 
               <div class="form-group form-group--large">
+
                 <label for="contact-subject">Sujet</label>
                 <input type="text" id="contact-subject" name="subject">
+
               </div>
 
               <div class="form-group form-group--large">
+
                 <label for="contact-message">Message *</label>
-                <textarea id="contact-message" name="message" rows="6" required></textarea>
-                <span class="error-text" id="error-message"></span>
+                <textarea id="contact-message" name="message" rows="6" required aria-required="true" aria-describedby="error-message"></textarea>
+                <span class="error-text" id="error-message" aria-live="polite"></span>
+
               </div>
 
               <div class="form-group-checkbox form-group--large">
+
                 <label for="contact-rgpd">
-                  <input type="checkbox" id="contact-rgpd" name="rgpd" required>
+                  <input type="checkbox" id="contact-rgpd" name="rgpd" required aria-required="true" aria-describedby="error-rgpd">
                   <span>J’accepte le traitement de mes données personnelles. *</span>
                 </label>
-                <span class="error-text" id="error-rgpd"></span>
+
+                <span class="error-text" id="error-rgpd" aria-live="polite"></span>
+
               </div>
 
               <button type="submit" class="btn-primary">Envoyer le message</button>
+
               <!-- Confirmer ou refuser l’envoi côté navigateur -->
-              <div id="form-feedback-zone"></div>
+              <div id="form-feedback-zone" role="alert" aria-live="assertive" tabindex="-1"></div>
+
             </form>
+
           </section>
 
           <!-- Donner les coordonnées utiles à côté du formulaire -->
           <aside class="contact-sidebar">
+            
             <section class="info-card dark-card">
+              
               <h2>ProSpace Solutions</h2>
+              
               <p>14 Avenue de Wagram, 75008 Paris</p>
+              
               <p>+33 1 42 56 78 90</p>
+              
               <p>contact@prospace-solutions.fr</p>
+              
               <p>Lundi au vendredi : 9h00 à 18h00</p>
+           
             </section>
+
             <section class="info-card alert-card">
+
               <h2>Réponse rapide garantie</h2>
+
               <p>Recevez une réponse sous deux heures ouvrées.</p>
+
             </section>
+
             <section class="info-card testimonial-card">
+
               <h2>Avis client</h2>
+
               <blockquote><p>« L’équipe est réactive et à l’écoute. »</p><cite>Charlotte M., Nexeo Group</cite></blockquote>
+
             </section>
+
           </aside>
+
         </div>
+
       </div>
 
       <!-- Présenter les membres de l’équipe dans un diaporama -->
       <section class="team-section" aria-labelledby="team-title">
+
         <div class="team-section__container">
+
           <h2 id="team-title">Des experts à votre service</h2>
-          <div class="carousel-container">
+
+          <div class="carousel-container" role="region" aria-roledescription="carrousel" aria-label="Équipe ProSpace Solutions">
+
             <button type="button" id="carousel-prev" class="btn-nav" aria-label="Afficher le membre précédent">‹</button>
+
             <div class="carousel-track-wrapper">
+
               <div class="carousel-track">
-                <article class="team-card" data-name="Alexandre Moreau"><img src="../assets/images/equipe-alexandre-moreau-ceo-co-fondateur.webp" alt="Portrait d’Alexandre Moreau"><h3>Alexandre Moreau</h3><p>CEO et co-fondateur</p></article>
-                <article class="team-card" data-name="Sophie Leclerc"><img src="../assets/images/equipe-sophie-leclerc-directrice-commerciale.webp" alt="Portrait de Sophie Leclerc"><h3>Sophie Leclerc</h3><p>Directrice commerciale</p></article>
-                <article class="team-card" data-name="Thomas Bergeron"><img src="../assets/images/equipe-thomas-bergeron-responsable-partenariats.webp" alt="Portrait de Thomas Bergeron"><h3>Thomas Bergeron</h3><p>Responsable partenariats</p></article>
-                <article class="team-card" data-name="Marine Dubois"><img src="../assets/images/equipe-marine-bubois-chargee-de-clientele-senior.webp" alt="Portrait de Marine Dubois"><h3>Marine Dubois</h3><p>Chargée de clientèle senior</p></article>
+
+                <article class="team-card" data-name="Alexandre Moreau">
+                  <img src="../assets/images/equipe-alexandre-moreau-ceo-co-fondateur.webp" alt="Portrait d’Alexandre Moreau">
+                  <h3>Alexandre Moreau</h3>
+                  <p>CEO et co-fondateur</p>
+                </article>
+
+                <article class="team-card" data-name="Sophie Leclerc">
+                  <img src="../assets/images/equipe-sophie-leclerc-directrice-commerciale.webp" alt="Portrait de Sophie Leclerc">
+                  <h3>Sophie Leclerc</h3>
+                  <p>Directrice commerciale</p>
+                </article>
+
+                <article class="team-card" data-name="Thomas Bergeron">
+                  <img src="../assets/images/equipe-thomas-bergeron-responsable-partenariats.webp" alt="Portrait de Thomas Bergeron">
+                  <h3>Thomas Bergeron</h3>
+                  <p>Responsable partenariats</p>
+                </article>
+
+                <article class="team-card" data-name="Marine Dubois">
+                  <img src="../assets/images/equipe-marine-bubois-chargee-de-clientele-senior.webp" alt="Portrait de Marine Dubois">
+                  <h3>Marine Dubois</h3>
+                  <p>Chargée de clientèle senior</p>
+                </article>
+
               </div>
+
             </div>
+
             <button type="button" id="carousel-next" class="btn-nav" aria-label="Afficher le membre suivant">›</button>
+
           </div>
+
           <div id="carousel-live-announcer" class="sr-only" aria-live="polite"></div>
+
         </div>
+
       </section>
 
       <!-- Indiquer la localisation du siège social -->
       <section class="contact-footer-map" aria-label="Localisation du siège social">
+
         <div class="contact-footer-map__container">
+
           <p><strong>14 Avenue de Wagram, 75008 Paris</strong></p>
+
           <a href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer">Voir sur Google Maps</a>
+
         </div>
+
       </section>
+
     </main>
 
     <!-- Injecter le pied de page commun -->
     <footer class="footer"></footer>
+
     <!-- Activer le préremplissage et la validation -->
     <script src="../assets/js/contact.js" defer></script>
   </body>

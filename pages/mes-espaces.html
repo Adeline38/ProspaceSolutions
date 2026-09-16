@@ -3,32 +3,92 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Retrouver les espaces enregistrés sur ProSpace Solutions.">
-    <title>Mes espaces favoris | ProSpace Solutions</title>
+    <!-- Fournir une description de secours avant le chargement du JSON -->
+    <meta name="description" content="Retrouvez vos espaces de travail et salles de réunion sauvegardés. Comparez votre sélection ProSpace Solutions et finalisez vos réservations.">
+
+    <!-- Fournir un titre de secours avant l’arrivée des données dynamiques -->
+    <title>Détail d’un espace de travail | ProSpace Solutions</title>
+
+    <!---->
     <link rel="stylesheet" href="../assets/css/styles.css">
-    <!-- Charger les outils communs avant la page -->
-    <script src="../assets/js/header.js"></script>
-    <script src="../assets/js/footer.js"></script>
+    <!---->
+    <!-- Fournir un favicon standard reconnu par tous les navigateurs -->
+    <link rel="icon" href="../public/_favicon_io/favicon.ico" sizes="any">
+    <!-- Fournir une version PNG plus précise pour les navigateurs modernes -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../public/_favicon_io/favicon-32x32.png">
+    <!-- Fournir une petite version pour certains onglets -->
+    <link rel="icon"  type="image/png" sizes="16x16" href="../public/_favicon_io/favicon-16x16.png">
+    <!-- Fournir l’icône utilisée sur les appareils Apple -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../public/_favicon_io/apple-touch-icon.png">
+
+    <!-- Charger les éléments communs du site -->
+    <script src="../assets/js/header.js" defer></script>
+    <script src="../assets/js/footer.js" defer></script>
+
   </head>
   <body>
+    <!-- Permettre d’atteindre directement le contenu avec le clavier -->
+    <a class="skip-link" href="#contenu-principal">
+        Aller au contenu principal
+    </a>
+
     <!-- Injecter le menu et sa pastille -->
     <header class="header"></header>
 
     <!-- Afficher la sélection enregistrée dans le navigateur -->
-    <main class="main-mes-espaces">
-      <section class="mes-espaces">
-        <div class="mes-espaces__container">
-          <h1>Mes espaces</h1>
-          <p>Espaces dans votre sélection</p>
-          <div id="favoris-feedback" aria-live="polite"></div>
-          <div class="catalogue__wrapper" id="liste-favoris"></div>
-        </div>
-      </section>
+    <!-- Présenter les espaces sauvegardés par l’utilisateur -->
+    <main id="contenu-principal" class="main-mes-espaces">
+
+        <section class="mes-espaces" aria-labelledby="mes-espaces-title">
+
+            <div class="mes-espaces__container">
+
+                <!-- Aligner le titre, le compteur et l’action générale -->
+                <header class="mes-espaces__header">
+
+                    <div>
+                        <h1 id="mes-espaces-title">
+                            Mes espaces Sauvegardés
+                        </h1>                        
+
+                        <!-- Annoncer les retraits, les erreurs et les confirmations -->
+                        <div id="favoris-feedback" class="favoris-feedback" role="status" aria-live="polite" aria-atomic="true">
+                            Chargement des espaces sauvegardés…
+                        </div>
+
+                    </div>
+
+                    <!-- Permettre de supprimer toute la sélection -->
+                    <button type="button" id="btn-vider-favoris" class="mes-espaces__clear" hidden>
+                        <img src="../assets/icons/ico_supprimer.svg" width="18" height="18" alt="" aria-hidden="true">
+                        <span>Vider la sélection</span>
+                    </button>
+
+                </header>
+
+                <!-- Recevoir les cartes créées depuis espace.json -->
+                <div id="liste-favoris" class="favoris-list" aria-busy="true"></div>
+
+                <!-- Informer lorsque JavaScript est désactivé -->
+                <noscript>
+                    <p class="favoris-empty">
+                        JavaScript doit être activé pour afficher vos espaces
+                        sauvegardés.
+                    </p>
+                </noscript>
+
+            </div>
+
+        </section>
+
     </main>
 
     <!-- Injecter le pied de page commun -->
     <footer class="footer"></footer>
+
     <!-- Construire la liste après la création du document -->
     <script src="../assets/js/mes-espaces.js" defer></script>
+
   </body>
+
 </html>
