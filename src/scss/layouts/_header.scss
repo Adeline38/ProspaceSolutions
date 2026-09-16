@@ -10,6 +10,10 @@
   @include box-shadow(0, 8px, 10px, -6px);
   background-color: $couleur-bleu-nuit;
 
+  /* Réserver la place du menu avant son injection par JavaScript. */
+  min-height: $hauteur-header;
+
+  /* Conserver les propriétés déjà présentes. */
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -33,7 +37,7 @@
   .prospace-solutions {
     color: $couleur-blanc;
     font-size: 18px;
-    font-weight: 900;
+    font-weight: 700;
     line-height: 100%;
     text-align: left;
   }

@@ -34,6 +34,17 @@ pseudo-code en français
 • Trier la liste pour ne garder que les lignes qui correspondent à tous les choix en même temps
 • Envoyer cette liste triée à la fonction d'affichage
 
+# mettre en favoris depuis l'accueil
+• Lire la liste "prospace_favoris" enregistrée dans le navigateur
+• Après l'affichage des cartes, colorer les cœurs des espaces déjà enregistrés
+• Quand l'utilisateur clique sur un cœur
+    si l'espace est absent de la liste, ajouter son identifiant
+    sinon, retirer son identifiant
+• Enregistrer la nouvelle liste dans localStorage
+• Mettre à jour le cœur et son texte accessible
+• Demander à la fonction commune du header de mettre à jour le compteur du menu
+• Garder le même fonctionnement après l'utilisation des filtres
+
 
 # ESPACES espace.js
 # initFicheEspace

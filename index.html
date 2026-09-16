@@ -10,9 +10,11 @@
         <!-- Nommer clairement la page dans l'onglet du navigateur et les résultats de recherche -->
         <title>Location d’espaces de travail en France | ProSpace Solutions</title>
 
-        <!---->
+        <!-- Télécharger en priorité l’image principale visible immédiatement. -->
+        <link rel="preload" as="image" href="assets/images/banner-prospace-solution.webp" type="image/webp" fetchpriority="high">
+
+        <!-- Charger ensuite les styles du site. -->
         <link rel="stylesheet" href="assets/css/styles.css">
-        <!---->
         <!-- Fournir un favicon standard reconnu par tous les navigateurs -->
         <link rel="icon" href="public/_favicon_io/favicon.ico" sizes="any">
         <!-- Fournir une version PNG plus précise pour les navigateurs modernes -->
@@ -23,9 +25,9 @@
         <link rel="apple-touch-icon" sizes="180x180" href="public/_favicon_io/apple-touch-icon.png">
 
         <!-- Script de l'affichage dynamique du header -->
-        <script src="assets/js/header.js"></script>
+        <script src="assets/js/header.js" defer></script>
         <!-- Script de l'affichage dynamique du footer -->
-        <script src="assets/js/footer.js"></script>
+        <script src="assets/js/footer.js" defer></script>
 
     </head>
 

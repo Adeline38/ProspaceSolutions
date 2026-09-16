@@ -14,20 +14,20 @@
         {
             "src": "assets/images/espace-wargram-opera-paris-8.webp",
             "alt": "Vue principale de l’Espace Wagram Opéra",
-            "width": 800,
-            "height": 520
+            "imageWidth": 800,
+            "imageHeight": 520
         },
         {
             "src": "assets/images/espace-wargram-opera-paris-8-2.webp",
             "alt": "Vue intérieure de l’Espace Wagram Opéra",
-            "width": 2260,
-            "height": 1720
+            "imageWidth": 2260,
+            "imageHeight": 1720
         },
         {
             "src": "assets/images/espace-wargram-opera-paris-8-3.webp",
             "alt": "Aménagement de l’Espace Wagram Opéra",
-            "width": 2299,
-            "height": 1737
+            "imageWidth": 2299,
+            "imageHeight": 1737
         }
     ],
     "description": "Salle de réunion lumineuse et moderne."

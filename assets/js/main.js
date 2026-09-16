@@ -144,7 +144,7 @@ async function initCatalogue() {
 
     try {
 
-        await new Promise(resolve => setTimeout(resolve, 600));
+        await new Promise(resolve => setTimeout(resolve, 0));
 
         const response = await fetch("assets/data/espace.json");
         
@@ -282,7 +282,16 @@ function renderEspaces(listeEspaces, targetContainer) {
 
         article.innerHTML = `
             <div class="card-image-wrapper">
-                <img src="${espace.image}" alt="Espace ${espace.nom} - ${espace.description}" class="card-img" loading="lazy">
+                <!-- Réserver la place de l’image avant son téléchargement. -->
+                <img
+                    src="${espace.image}"
+                    alt="Espace ${espace.nom} à ${espace.ville}"
+                    class="card-img"
+                    width="${espace.imageWidth}"
+                    height="${espace.imageHeight}"
+                    loading="lazy"
+                    decoding="async"
+                >
                 
                 <button type="button" class="btn-favoris" aria-label="Ajouter ${espace.nom} aux favoris" aria-pressed="false" data-id="${espace.id}">
                     <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="icon-svg lucide lucide-heart" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>

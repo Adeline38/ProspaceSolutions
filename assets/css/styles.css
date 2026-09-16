@@ -71,17 +71,13 @@ p {
 /* ================================================= */
 /* === POLICES ET TEXTES GÉNÉRAUX === */
 /* ================================================= */
-/* ================================================= */
-/* === CHARTE GRAPHIQUE PROSPACE === */
-/* ================================================= */
-/* Couleurs principales */
-/* Couleurs secondaires */
-/* Transparences */
-/* Espacements réutilisés */
-/* Arrondis */
-/* Dimensions */
-/* Points de rupture existants dans la maquette */
-/* Typographie */
+/* Définir les couleurs principales de ProSpace. */
+/* Définir les couleurs secondaires et accessibles. */
+/* Définir les transparences réutilisables. */
+/* Définir les espaces réutilisables. */
+/* Définir les arrondis réutilisables. */
+/* Définir les dimensions principales. */
+/* Définir la police principale. */
 @font-face {
   font-family: "SF Pro Display";
   src: url("../fonts/sf-pro-display/sf-pro-display-regular.woff2") format("woff2");
@@ -112,13 +108,6 @@ p {
 }
 @font-face {
   font-family: "SF Pro Display";
-  src: url("../fonts/sf-pro-display/sf-pro-display-heavy.woff2") format("woff2");
-  font-style: normal;
-  font-weight: 800;
-  font-display: swap;
-}
-@font-face {
-  font-family: "SF Pro Display";
   src: url("../fonts/sf-pro-display/sf-pro-display-black.woff2") format("woff2");
   font-style: normal;
   font-weight: 900;
@@ -144,7 +133,7 @@ body {
 /* === OUTILS RÉUTILISABLES === */
 /* ================================================= */
 /* Crée rapidement une ligne ou une colonne en Flexbox */
-/* Donne la même largeur aux grands conteneurs du site */
+/* Donner la même largeur aux grandes zones du site. */
 /* Ajoute une ombre compatible avec les principaux navigateurs */
 /* Cache visuellement un texte tout en le gardant lisible par un lecteur d'écran */
 /* Crée la base commune des boutons et liens ayant l'apparence d'un bouton */
@@ -157,21 +146,25 @@ section.hero {
   gap: 0;
   position: relative;
   width: 100%;
-  min-height: 602px;
+  /* Laisser le contenu définir la hauteur sur les petits écrans. */
+  min-height: auto;
   background-color: #0f172a;
 }
 
 .hero__banner {
-  background-image: linear-gradient(to top, #000000 0%, #0f172a 60%), url("../images/banner-prospace-solution.webp");
+  /* Assombrir la photographie pour conserver un texte blanc lisible. */
+  background-image: linear-gradient(90deg, rgba(15, 23, 42, 0.98) 0%, rgba(15, 23, 42, 0.88) 50%, rgba(15, 23, 42, 0.55) 100%), url("../images/banner-prospace-solution.webp");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-origin: border-box;
 }
 
 .hero__wrapper {
-  width: 78vw;
+  /* Conserver une petite marge sur les côtés du mobile. */
+  width: calc(100% - 32px);
+  /* Empêcher le contenu de devenir trop large sur un grand écran. */
   max-width: 1280px;
+  /* Centrer horizontalement le conteneur. */
   margin-inline: auto;
   display: flex;
   flex-direction: column;
@@ -209,10 +202,10 @@ section.hero {
   flex-direction: column;
   margin: 0;
   color: #ffffff;
-  font-size: 60px;
-  font-weight: 800;
+  font-size: 3.75rem;
+  font-weight: 700;
   letter-spacing: -0.26px;
-  line-height: 66px;
+  line-height: 100%;
 }
 .hero h1 span {
   width: fit-content;
@@ -244,7 +237,7 @@ section.hero {
   gap: 8px;
 }
 .hero li span {
-  color: #90a1b9;
+  color: #64748b;
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
@@ -290,6 +283,17 @@ section.hero {
     padding-bottom: 10px;
     gap: 5px;
   }
+  .hero h1 {
+    font-size: 2.25rem;
+    line-height: 2.25rem;
+  }
+  .hero p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  section.hero {
+    min-height: auto;
+  }
 }
 /* ================================================= */
 /* === POLICES ET TEXTES GÉNÉRAUX === */
@@ -305,8 +309,11 @@ section.hero {
   background-color: #f8fafc;
 }
 .breadcrumb__container {
-  width: 78vw;
+  /* Conserver une petite marge sur les côtés du mobile. */
+  width: calc(100% - 32px);
+  /* Empêcher le contenu de devenir trop large sur un grand écran. */
   max-width: 1280px;
+  /* Centrer horizontalement le conteneur. */
   margin-inline: auto;
   padding-inline: 24px;
 }
@@ -315,7 +322,7 @@ section.hero {
   flex-wrap: wrap;
   align-items: center;
   gap: 10px;
-  color: #90a1b9;
+  color: #64748b;
   font-size: 14px;
   line-height: 20px;
 }
@@ -326,7 +333,7 @@ section.hero {
 }
 .breadcrumb li + li::before {
   content: "›";
-  color: #90a1b9;
+  color: #64748b;
   font-size: 18px;
   font-weight: 400;
 }
@@ -353,10 +360,7 @@ section.hero {
 /* ================================================= */
 /* === BANNIÈRE DE LA PAGE D'ACCUEIL === */
 /* ================================================= */
-/* ================================================= */
-/* === BOUTONS ET LIENS D'ACTION === */
-/* ================================================= */
-/* Classe générale disponible pour les prochains boutons */
+/* Présenter les boutons et montrer clairement leur état actif. */
 .btn {
   display: flex;
   flex-direction: row;
@@ -375,8 +379,8 @@ section.hero {
   background-color: #0369a1;
 }
 .btn:focus-visible {
-  outline: 3px solid #38bdf8;
-  outline-offset: 3px;
+  outline: 2px solid #38bdf8;
+  outline-offset: 2px;
 }
 .btn-favoris {
   display: flex;
@@ -394,19 +398,21 @@ section.hero {
   border: 0;
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.5647058824);
-  color: #b0b0b0;
+  color: #767676;
   cursor: pointer;
   transition: color 0.2s, background-color 0.2s;
 }
 .btn-favoris:hover, .btn-favoris:focus, .btn-favoris[aria-pressed=true] {
-  background-color: #ff2056;
+  background-color: #c2185b;
   color: #ffffff;
 }
 .btn-favoris[aria-pressed=true] .icon-svg, .btn-favoris.is-active .icon-svg {
   fill: currentColor;
 }
+.btn-favoris svg {
+  width: 24px;
+}
 
-/* Le parent rend cette règle prioritaire sur les liens génériques du footer */
 .footer__wrapper .btn-footer {
   display: flex;
   flex-direction: row;
@@ -439,7 +445,7 @@ section.hero {
   font-size: 0.95rem;
   font-weight: 600;
 }
-.card-main-link:hover, .card-main-link:focus {
+.card-main-link:hover, .card-main-link:focus-visible {
   background-color: #0369a1;
 }
 .card-main-link::after {
@@ -449,8 +455,6 @@ section.hero {
   z-index: 1;
 }
 
-/* Boutons de la fiche espace */
-.btn-primary,
 .btn-secondary {
   display: flex;
   flex-direction: row;
@@ -471,40 +475,53 @@ section.hero {
   line-height: 20px;
   transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
-.btn-primary .icon-svg,
 .btn-secondary .icon-svg {
   width: 17px;
   height: 17px;
 }
-.btn-primary:focus-visible,
 .btn-secondary:focus-visible {
-  outline: 3px solid #38bdf8;
-  outline-offset: 3px;
+  outline: 2px solid #38bdf8;
+  outline-offset: 2px;
 }
-
-.btn-primary {
-  -webkit-box-shadow: 0 8px 18px -8px rgba(2, 132, 199, 0.65);
-  -moz-box-shadow: 0 8px 18px -8px rgba(2, 132, 199, 0.65);
-  box-shadow: 0 8px 18px -8px rgba(2, 132, 199, 0.65);
-}
-.btn-primary .icon-svg {
-  filter: brightness(0) invert(1);
-}
-.btn-primary:hover {
-  background-color: #0369a1;
-  transform: translateY(-1px);
-}
-
 .btn-secondary {
-  border: 2px solid #ff2056;
-  background-color: rgba(255, 32, 86, 0.04);
-  color: #ff2056;
+  border: 2px solid #c2185b;
+  background-color: rgba(194, 24, 91, 0.04);
+  color: #c2185b;
 }
 .btn-secondary .icon-svg {
   filter: invert(25%) sepia(97%) saturate(4146%) hue-rotate(337deg) brightness(102%) contrast(102%);
 }
 .btn-secondary:hover, .btn-secondary.is-active, .btn-secondary[aria-pressed=true] {
-  background-color: rgba(255, 32, 86, 0.1);
+  background-color: rgba(194, 24, 91, 0.1);
+}
+
+/* Présenter le bouton principal du formulaire et de la fiche. */
+.btn-primary {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  display: inline-flex;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 10px;
+  background-color: #0284c7;
+  color: #ffffff;
+  cursor: pointer;
+  -webkit-box-shadow: 0 8px 18px -8px rgba(2, 132, 199, 0.65);
+  -moz-box-shadow: 0 8px 18px -8px rgba(2, 132, 199, 0.65);
+  box-shadow: 0 8px 18px -8px rgba(2, 132, 199, 0.65);
+  width: 100%;
+  min-height: 48px;
+  font-weight: 600;
+}
+.btn-primary:hover {
+  background-color: #0369a1;
+}
+.btn-primary:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 2px;
 }
 
 /* ================================================= */
@@ -550,6 +567,10 @@ section.hero {
   object-fit: cover;
 }
 
+.card-content-wrapper button {
+  z-index: 1000;
+}
+
 .card-content-wrapper {
   display: flex;
   flex-grow: 1;
@@ -572,7 +593,7 @@ section.hero {
   display: flex;
   align-items: center;
   gap: 6px;
-  color: #90a1b9;
+  color: #64748b;
   font-size: 14px;
   font-weight: 400;
   letter-spacing: -0.15px;
@@ -580,7 +601,7 @@ section.hero {
 }
 
 .card-location span {
-  color: #62748e;
+  color: #475569;
   font-size: 15px;
   font-weight: 400;
   letter-spacing: -0.15px;
@@ -596,13 +617,19 @@ section.hero {
   gap: 6px;
 }
 
+/* Aligner les cinq étoiles des cartes de l’accueil. */
 .stars {
-  display: flex;
-  color: #ffb900;
-  letter-spacing: -2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  color: #a16207;
 }
-.stars svg {
-  place-self: center;
+
+/* Empêcher le style général .icon-svg de changer leur taille. */
+.stars .icon-svg {
+  flex: 0 0 auto;
+  width: 15px;
+  height: 15px;
 }
 
 .rating-value {
@@ -613,7 +640,7 @@ section.hero {
 }
 
 .rating-count {
-  color: #90a1b9;
+  color: #64748b;
   font-size: 12px;
   font-weight: 400;
   line-height: 16px;
@@ -639,7 +666,7 @@ section.hero {
   padding: 4px 8px;
   border-radius: 4px;
   background-color: #edf2f7;
-  color: #62748e;
+  color: #475569;
   font-size: 12px;
   font-weight: 400;
   line-height: 16px;
@@ -666,20 +693,84 @@ section.hero {
 }
 
 .price-unit {
-  color: #90a1b9;
+  color: #64748b;
   font-size: 12px;
   font-weight: 700;
   line-height: 16px;
 }
 
 .space-card:focus-within {
-  outline: 3px solid #38bdf8;
+  outline: 2px solid #38bdf8;
 }
 
 /* ================================================= */
-/* === CAROUSEL === */
+/* === POLICES ET TEXTES GÉNÉRAUX === */
 /* ================================================= */
-/* Les styles du carrousel seront ajoutés avec la page Contact */
+/* ================================================= */
+/* === BANNIÈRE DE LA PAGE D'ACCUEIL === */
+/* ================================================= */
+/* Faire défiler les portraits de l’équipe sur la page contact. */
+.team-section {
+  padding-block: 64px;
+  background-color: #ffffff;
+}
+.team-section__container {
+  /* Conserver une petite marge sur les côtés du mobile. */
+  width: calc(100% - 32px);
+  /* Empêcher le contenu de devenir trop large sur un grand écran. */
+  max-width: 1280px;
+  /* Centrer horizontalement le conteneur. */
+  margin-inline: auto;
+}
+
+.carousel-container {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.carousel-track-wrapper {
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.35s ease;
+}
+
+.team-card {
+  flex: 0 0 100%;
+  padding: 24px;
+  text-align: center;
+}
+.team-card img {
+  width: 160px;
+  height: 160px;
+  margin-inline: auto;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.team-card h3 {
+  margin-top: 16px;
+}
+
+.btn-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background-color: #0284c7;
+  color: #ffffff;
+  font-size: 1.5rem;
+}
+
 /* ================================================= */
 /* === POLICES ET TEXTES GÉNÉRAUX === */
 /* ================================================= */
@@ -701,11 +792,18 @@ section.filtre {
   width: 100%;
   border: 1px solid #e2e8f0;
   background-color: #ffffff;
+  /**/
+  position: sticky;
+  z-index: 900;
+  top: 64px;
 }
 
 .filtre__wrapper {
-  width: 78vw;
+  /* Conserver une petite marge sur les côtés du mobile. */
+  width: calc(100% - 32px);
+  /* Empêcher le contenu de devenir trop large sur un grand écran. */
   max-width: 1280px;
+  /* Centrer horizontalement le conteneur. */
   margin-inline: auto;
   display: flex;
   flex-wrap: wrap;
@@ -732,14 +830,14 @@ section.filtre {
   gap: 6px;
 }
 .filtre .title span {
-  color: #90a1b9;
+  color: #64748b;
   font-size: 12px;
   font-weight: 600;
   line-height: 16px;
   text-transform: uppercase;
 }
 .filtre .title .icon-svg {
-  color: #90a1b9;
+  color: #64748b;
 }
 .filtre .sep {
   width: 1px;
@@ -755,11 +853,19 @@ section.filtre {
   font-size: 14px;
   font-weight: 400;
 }
+.filtre select:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 2px;
+}
 
+/* select:focus, input:focus, textarea:focus {
+    border-color: #38bdf8;
+    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.25);
+} */
 .field-wrapper select {
   width: 100%;
   padding: 8px 12px;
-  border: 1px solid #cbd5e0;
+  border: 1px solid #94a3b8;
   border-radius: 6px;
   background-color: #ffffff;
   color: #2d3748;
@@ -790,6 +896,10 @@ section.filtre {
   border-radius: 2px;
   background-color: #ffffff;
 }
+.checkbox:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 2px;
+}
 .checkbox span {
   color: #45556c;
   font-size: 14px;
@@ -798,13 +908,11 @@ section.filtre {
 }
 
 @media (max-width: 795px) {
-  .filtre,
-  .filtre__wrapper,
-  .filtre__wrapper fieldset:nth-of-type(1) {
+  .filtre, .filtre__wrapper, .filtre__wrapper fieldset:nth-of-type(1) {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     width: 100%;
     max-width: 795px;
     height: unset;
@@ -823,6 +931,14 @@ section.filtre {
     width: unset;
     max-width: 480px;
     height: unset;
+  }
+  section.filtre {
+    position: sticky;
+    z-index: 900;
+    top: 64px;
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
   }
 }
 /* ================================================= */
@@ -845,429 +961,476 @@ section.filtre {
   width: 50px;
   height: 50px;
   border: 5px solid rgba(0, 0, 0, 0.062745098);
-  border-left-color: #3498db;
+  border-left-color: #0277bd;
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
 
 /* Grandes zones des pages */
 /* ================================================= */
-/* === SECTIONS PROPRES À LA PAGE CONTACT === */
+/* === POLICES ET TEXTES GÉNÉRAUX === */
 /* ================================================= */
+/* ================================================= */
+/* === BANNIÈRE DE LA PAGE D'ACCUEIL === */
+/* ================================================= */
+/* Commencer la mise en page du formulaire de contact. */
+.main-contact {
+  background-color: #f8fafc;
+}
+
+.contact-hero {
+  padding-block: 64px;
+  background-color: #0f172a;
+  color: #ffffff;
+}
+.contact-hero__container {
+  /* Conserver une petite marge sur les côtés du mobile. */
+  width: calc(100% - 32px);
+  /* Empêcher le contenu de devenir trop large sur un grand écran. */
+  max-width: 1280px;
+  /* Centrer horizontalement le conteneur. */
+  margin-inline: auto;
+}
+.contact-hero h1 {
+  margin-block: 8px 16px;
+  font-size: 2.5rem;
+}
+
+.contact-body-layout {
+  padding-block: 64px;
+}
+.contact-body-layout__container {
+  /* Conserver une petite marge sur les côtés du mobile. */
+  width: calc(100% - 32px);
+  /* Empêcher le contenu de devenir trop large sur un grand écran. */
+  max-width: 1280px;
+  /* Centrer horizontalement le conteneur. */
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr);
+  gap: 32px;
+}
+
+.contact-form-section,
+.info-card {
+  padding: 24px;
+  border-radius: 12px;
+  background-color: #ffffff;
+}
+
+.contact-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Ranger les champs sur deux colonnes. */
+.contact-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.form-group,
+.form-group-checkbox {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.form-group--large,
+.form-group-checkbox--large {
+  grid-column: 1/-1;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #94a3b8;
+  border-radius: 4px;
+}
+
+.error-text,
+#form-feedback-zone {
+  color: #d32f2f;
+  font-size: 0.875rem;
+}
+
+/* Montrer clairement le champ qui doit être corrigé. */
+.contact-form [aria-invalid=true] {
+  border-color: #d32f2f;
+  outline: 2px solid rgba(211, 47, 47, 0.2);
+}
+
+.dark-card {
+  background-color: #0f172a;
+  color: #ffffff;
+}
+
+.contact-footer-map {
+  padding-block: 24px;
+  background-color: #f1f5f9;
+}
+.contact-footer-map__container {
+  /* Conserver une petite marge sur les côtés du mobile. */
+  width: calc(100% - 32px);
+  /* Empêcher le contenu de devenir trop large sur un grand écran. */
+  max-width: 1280px;
+  /* Centrer horizontalement le conteneur. */
+  margin-inline: auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* Empiler les colonnes sur tablette. */
+@media (max-width: 795px) {
+  .contact-body-layout__container,
+  .contact-form {
+    grid-template-columns: 1fr;
+  }
+  .form-group--large {
+    grid-column: auto;
+  }
+}
 /* ================================================= */
 /* === POLICES ET TEXTES GÉNÉRAUX === */
 /* ================================================= */
 /* ================================================= */
 /* === BANNIÈRE DE LA PAGE D'ACCUEIL === */
 /* ================================================= */
-/* ================================================= */
-/* === SECTIONS PROPRES À LA PAGE FICHE ESPACE === */
-/* ================================================= */
+/* Présenter la fiche espace et son fond général */
+/* Conteneurs et en-tête */
 .main-fiche-espace {
-  padding-bottom: 176px;
+  min-height: 100vh;
+  padding-bottom: 64px;
   background-color: #f8fafc;
-  color: #0f172a;
 }
 
-.main-fiche-espace + .footer {
-  min-height: 395px;
-}
-
-#fiche-loading-zone {
-  width: 78vw;
+/* Donner la même largeur aux grandes zones de la fiche. */
+.fiche-header__container,
+.fiche-gallery,
+.fiche-body-layout,
+.fiche-loading-zone {
+  width: calc(100% - 32px);
   max-width: 1280px;
   margin-inline: auto;
 }
-#fiche-loading-zone:empty {
-  min-height: 0;
-}
 
+/* Espacer le titre du fil d’Ariane et de la galerie. */
 .fiche-header__container {
-  width: 78vw;
-  max-width: 1280px;
-  margin-inline: auto;
-  padding: 34px 24px 30px;
+  padding-block: 24px;
 }
-.fiche-header__container h1 {
-  margin-bottom: 12px;
+
+/* Présenter le type comme une petite information secondaire. */
+.fiche-type {
+  margin-bottom: 8px;
+  color: #0284c7;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Mettre le nom de la salle en évidence. */
+.fiche-header h1 {
   color: #0f172a;
-  font-size: clamp(2rem, 3vw, 2.5rem);
-  font-weight: 800;
-  letter-spacing: -0.8px;
+  font-size: 2rem;
   line-height: 1.15;
 }
 
+/* Ranger l’adresse et la note l’une sous l’autre sur mobile. */
 .fiche-header__meta {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 22px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 16px;
 }
-.fiche-header__meta .card-location,
-.fiche-header__meta .card-rating {
+
+/* Aligner les petites informations avec leurs icônes. */
+.fiche-location,
+.fiche-rating {
   display: flex;
   align-items: center;
-  gap: 7px;
-}
-.fiche-header__meta .card-location {
-  color: #62748e;
-}
-.fiche-header__meta .card-location span {
-  color: inherit;
-  font-size: 14px;
-}
-.fiche-header__meta .card-rating {
-  color: #90a1b9;
-  font-size: 14px;
-}
-.fiche-header__meta .card-rating::before {
-  content: "★★★★★";
-  color: #ffb900;
-  letter-spacing: 1px;
-}
-.fiche-header__meta .card-rating > img {
-  display: none;
-}
-.fiche-header__meta .dynamic-note {
-  color: #0f172a;
-}
-.fiche-header__meta .icon-svg {
-  width: 16px;
-  height: 16px;
+  gap: 8px;
+  color: #475569;
 }
 
-.fiche-gallery {
-  width: 78vw;
-  max-width: 1280px;
-  margin-inline: auto;
-  padding-inline: 24px;
+/* Reprendre la couleur des étoiles de la maquette. */
+.rating-stars {
+  color: #a16207;
+  letter-spacing: 2px;
 }
 
-.gallery-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr);
-  grid-template-rows: repeat(2, 190px);
-  gap: 12px;
-  overflow: hidden;
-  border-radius: 16px;
+/* Aligner horizontalement les cinq étoiles. */
+.rating-stars {
+  display: inline-flex;
+  gap: 2px;
+  color: #a16207;
 }
 
-.gallery-item {
-  min-width: 0;
-  overflow: hidden;
-  background-color: #e2e8f0;
-}
-.gallery-item.main-img {
-  grid-row: 1/3;
-}
-.gallery-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.35s ease;
-}
-.gallery-item:hover img {
-  transform: scale(1.02);
-}
-
-.fiche-body-layout {
-  width: 78vw;
-  max-width: 1280px;
-  margin-inline: auto;
-  display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(300px, 380px);
-  grid-template-rows: auto auto auto;
-  column-gap: 40px;
-  row-gap: 38px;
-  padding: 48px 24px 0;
-}
-
-/* Sur ordinateur, display: contents permet de placer le tableau des tarifs
-   dans la colonne droite sans modifier le HTML sémantique. */
-.fiche-info-column {
-  display: contents;
-}
-
-.info-block {
-  min-width: 0;
-}
-.info-block h2 {
-  margin-bottom: 18px;
-  color: #0f172a;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 28px;
-}
-.info-block > p {
-  color: #62748e;
-  font-size: 15px;
-  line-height: 1.7;
-}
-.info-block:nth-child(1) {
-  grid-column: 1;
-  grid-row: 1;
-  min-height: 125px;
-}
-.info-block:nth-child(2) {
-  grid-column: 1;
-  grid-row: 2;
-  min-height: 230px;
-}
-.info-block:nth-child(3) {
-  grid-column: 1;
-  grid-row: 3;
-  padding: 24px;
-  border: 1px solid rgba(56, 189, 248, 0.45);
-  border-radius: 14px;
-  background-color: rgba(56, 189, 248, 0.06);
-}
-.info-block:nth-child(4) {
-  -webkit-box-shadow: 0 12px 30px -20px rgba(15, 23, 42, 0.35);
-  -moz-box-shadow: 0 12px 30px -20px rgba(15, 23, 42, 0.35);
-  box-shadow: 0 12px 30px -20px rgba(15, 23, 42, 0.35);
-  grid-column: 2;
-  grid-row: 1/4;
-  align-self: start;
-  width: 100%;
-  min-height: 440px;
-  padding: 24px 24px 210px;
-  border: 1px solid #e2e8f0;
-  border-radius: 16px;
-  background-color: #ffffff;
-}
-
-.grid-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-.grid-list li {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-height: 46px;
-  padding: 10px 16px;
-  border: 1px solid #f1f5f9;
-  border-radius: 12px;
-  background-color: #ffffff;
-  color: #62748e;
-  font-size: 14px;
-  line-height: 20px;
-}
-.grid-list .icon-svg {
-  flex: 0 0 17px;
-  width: 17px;
-  height: 17px;
-  color: #0284c7;
-}
-
-.capacity-box {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: #62748e;
-}
-.capacity-box .icon-svg {
-  width: 18px;
-  height: 18px;
-}
-.capacity-box p {
-  font-size: 14px;
-  line-height: 20px;
-}
-.capacity-box strong {
-  color: #0f172a;
-}
-
-.info-block .config-text {
-  padding-left: 30px;
-  color: #90a1b9;
-  font-size: 13px;
-  line-height: 20px;
-}
-
-.tarifs-table {
-  width: 100%;
-  color: #62748e;
-  font-size: 14px;
-}
-.tarifs-table caption,
-.tarifs-table thead {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-.tarifs-table tr:not(:last-child) {
-  border-bottom: 1px solid #f1f5f9;
-}
-.tarifs-table th,
-.tarifs-table td {
-  padding: 17px 0;
-}
-.tarifs-table th {
-  color: #90a1b9;
-  font-weight: 400;
-  text-align: left;
-}
-.tarifs-table th::before {
-  content: "";
-  display: inline-block;
+/* Fixer la taille malgré les styles généraux des icônes. */
+.rating-stars .icon-svg {
   width: 15px;
   height: 15px;
-  margin-right: 8px;
-  background: url("../icons/ico_horaires.svg") center/contain no-repeat;
-  vertical-align: -2px;
 }
-.tarifs-table td {
+
+/* Chargmeent et erreur */
+/* Centrer le message pendant le chargement du JSON. */
+.fiche-loading-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding-block: 64px;
   color: #0f172a;
-  font-size: 18px;
-  font-weight: 700;
-  text-align: right;
-  white-space: nowrap;
 }
-.tarifs-table tbody tr:last-child th,
-.tarifs-table tbody tr:last-child td {
+
+/* Masquer complètement la zone lorsqu’elle ne contient plus rien. */
+.fiche-loading-zone:empty {
+  display: none;
+  padding: 0;
+}
+
+/* Présenter clairement une erreur de chargement. */
+.error-message {
+  padding: 24px;
+  border: 1px solid #d32f2f;
+  border-radius: 12px;
+  background-color: #ffffff;
+  color: #d32f2f;
+}
+
+/* Rendre le lien de retour facilement identifiable. */
+.error-message a {
+  display: inline-block;
+  margin-top: 16px;
   color: #0284c7;
-  font-weight: 700;
+  font-weight: 600;
+  text-decoration: underline;
 }
 
-.fiche-action-sidebar {
-  position: sticky;
-  top: 24px;
-  z-index: 1;
-  grid-column: 2;
-  grid-row: 1/4;
-  align-self: start;
-  margin-top: 235px;
-  padding: 0 24px 24px;
-}
-
-.action-card {
+/* Galerie mobile-first */
+/* Empiler d’abord les photographies sur les petits écrans. */
+.gallery-grid {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.action-disclaimer {
+/* Empiler les photographies secondaires sur mobile. */
+.gallery-secondary {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 6px;
-  margin-top: 4px;
-  color: #90a1b9;
-  font-size: 11px;
-  line-height: 16px;
-  text-align: center;
-}
-.action-disclaimer .icon-svg {
-  width: 13px;
-  height: 13px;
+  flex-direction: column;
+  gap: 12px;
 }
 
-@media (max-width: 1240px) {
-  .fiche-body-layout {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
+/* Créer un cadre identique pour chaque photographie. */
+.gallery-item {
+  width: 100%;
+  height: 220px;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+/* Recadrer la photographie sans la déformer. */
+.gallery-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Placer les photographies côte à côte sur tablette et ordinateur. */
+@media (min-width: 795px) {
+  .gallery-grid {
+    flex-direction: row;
+    height: 392px;
   }
-  .fiche-info-column {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
+  /* Donner deux parts de largeur à la photographie principale. */
+  .gallery-item--main {
+    flex: 2 1 0;
+    height: 100%;
   }
-  .info-block:nth-child(1),
-  .info-block:nth-child(2),
-  .info-block:nth-child(3),
-  .info-block:nth-child(4) {
-    grid-column: auto;
-    grid-row: auto;
+  /* Donner une part de largeur aux photographies secondaires. */
+  .gallery-secondary {
+    flex: 1 1 0;
+    min-width: 0;
+    height: 100%;
+  }
+  /* Masquer la colonne secondaire lorsqu’elle ne contient aucune image visible. */
+  .gallery-secondary:not(:has(.gallery-item:not([hidden]))) {
+    display: none;
+  }
+  /* Partager automatiquement la hauteur entre les images présentes. */
+  .gallery-secondary .gallery-item {
+    flex: 1 1 0;
     min-height: 0;
-  }
-  .info-block:nth-child(4) {
-    align-self: stretch;
-    width: 100%;
-    min-height: 0;
-    padding: 24px;
-  }
-  .fiche-action-sidebar {
-    position: static;
-    align-self: stretch;
-    width: 100%;
-    margin-top: 0;
-    padding: 0;
+    height: auto;
   }
 }
-@media (max-width: 795px) {
-  .main-fiche-espace {
-    padding-bottom: 64px;
-  }
-  .main-fiche-espace + .footer {
-    min-height: 0;
-  }
-  .fiche-header__container,
-  .fiche-gallery,
-  .fiche-body-layout {
-    width: 100%;
-  }
-  .fiche-header__meta {
-    align-items: flex-start;
-    gap: 10px;
-  }
-  .gallery-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: 320px 150px;
-  }
-  .gallery-item.main-img {
-    grid-column: 1/3;
-    grid-row: 1;
-  }
+/* Colonne d'infomration ASIDE */
+/* Empiler les informations et les tarifs sur mobile. */
+.fiche-body-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  padding-top: 48px;
 }
-@media (max-width: 480px) {
-  .fiche-header__container {
-    padding-top: 24px;
-  }
-  .fiche-header__container h1 {
-    font-size: 30px;
-  }
-  .fiche-header__meta {
-    flex-direction: column;
-  }
-  .gallery-grid {
-    display: flex;
-    flex-direction: column;
-    border-radius: 12px;
-  }
-  .gallery-item {
-    height: 180px;
-  }
-  .gallery-item.main-img {
-    height: 260px;
-  }
-  .fiche-body-layout {
-    padding-top: 32px;
-  }
+
+/* Espacer régulièrement les trois blocs d’informations. */
+.fiche-info-column {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Uniformiser les titres de la fiche. */
+.info-block h2,
+.action-card h2 {
+  margin-bottom: 16px;
+  color: #0f172a;
+  font-size: 1.25rem;
+}
+
+/* Faciliter la lecture de la description. */
+.dynamic-description {
+  color: #475569;
+  line-height: 1.7;
+}
+
+/* Grille des équipements */
+/* Afficher les équipements sur une colonne en mobile. */
+.grid-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+/* Présenter chaque équipement dans une petite carte. */
+.grid-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background-color: #ffffff;
+  color: #475569;
+}
+
+/* Colorer les icônes sans remplacer leur texte. */
+.grid-list .icon-svg {
+  width: 18px;
+  height: 18px;
+  color: #0284c7;
+}
+
+/* Utiliser deux colonnes lorsque la place devient suffisante. */
+@media (min-width: 795px) {
   .grid-list {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
-  .tarifs-table {
-    table-layout: fixed;
+}
+/* Bloc Capacité */
+/* Reproduire le cadre bleu de la maquette. */
+.capacity-box {
+  padding: 24px;
+  border: 1px solid rgba(56, 189, 248, 0.5);
+  border-radius: 12px;
+  background-color: rgba(56, 189, 248, 0.08);
+}
+
+/* Aligner l’icône avec les informations de capacité. */
+.capacity-box__content {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+/* Rendre la capacité principale facile à repérer. */
+.capacity-box__content strong {
+  color: #0f172a;
+}
+
+/* Présenter l’explication comme une information secondaire. */
+.capacity-box__description {
+  margin-top: 4px;
+  color: #64748b;
+}
+
+/* Encart des tarifs et des actions */
+/* Présenter les tarifs dans une carte blanche. */
+.action-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.062745098);
+}
+
+/* Utiliser toute la largeur disponible pour le tableau. */
+.tarifs-table {
+  width: 100%;
+}
+
+/* Présenter les en-têtes comme une information secondaire. */
+.tarifs-table thead {
+  color: #64748b;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+/* Espacer les lignes et ajouter des séparateurs. */
+.tarifs-table th,
+.tarifs-table td {
+  padding: 14px 0;
+  border-bottom: 1px solid #e2e8f0;
+  text-align: left;
+}
+
+/* Aligner les montants à droite. */
+.tarifs-table td {
+  color: #0f172a;
+  font-weight: 700;
+  text-align: right;
+}
+
+/* Mettre le tarif journalier en évidence. */
+.tarifs-table__highlight th,
+.tarifs-table__highlight td {
+  color: #0284c7;
+}
+
+/* Présenter le délai comme une information discrète. */
+.action-disclaimer {
+  color: #64748b;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+/* Disposition sur grand écran */
+/* Séparer le contenu et l’encart quand la largeur le permet. */
+@media (min-width: 795px) {
+  .fiche-header__meta {
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
   }
-  .tarifs-table th {
-    width: 65%;
+  .fiche-body-layout {
+    grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
   }
-  .tarifs-table td {
-    width: 35%;
-    font-size: 16px;
-  }
-  .info-block:nth-child(3),
-  .info-block:nth-child(4) {
-    padding: 18px;
+  /* Garder les tarifs visibles pendant la lecture des informations. */
+  .fiche-action-sidebar {
+    position: sticky;
+    top: calc(64px + 24px);
+    align-self: start;
   }
 }
 /* ================================================= */
@@ -1289,8 +1452,11 @@ footer {
 }
 
 .footer__container {
-  width: 78vw;
+  /* Conserver une petite marge sur les côtés du mobile. */
+  width: calc(100% - 32px);
+  /* Empêcher le contenu de devenir trop large sur un grand écran. */
   max-width: 1280px;
+  /* Centrer horizontalement le conteneur. */
   margin-inline: auto;
   display: flex;
   flex-direction: column;
@@ -1312,14 +1478,14 @@ footer {
   max-width: 200px;
   padding-top: 20px;
   margin-bottom: 10px;
-  color: #62748e;
+  color: #475569;
   font-size: 12px;
   font-weight: 400;
   letter-spacing: 0.44px;
   line-height: 19.5px;
 }
 .footer__wrapper a {
-  color: #90a1b9;
+  color: #64748b;
   font-size: 12px;
   font-weight: 400;
   letter-spacing: 0.44px;
@@ -1339,8 +1505,11 @@ footer {
 }
 
 .footer__bottom {
-  width: 78vw;
+  /* Conserver une petite marge sur les côtés du mobile. */
+  width: calc(100% - 32px);
+  /* Empêcher le contenu de devenir trop large sur un grand écran. */
   max-width: 1280px;
+  /* Centrer horizontalement le conteneur. */
   margin-inline: auto;
   display: flex;
   justify-content: space-between;
@@ -1424,10 +1593,20 @@ footer {
   -moz-box-shadow: 0 8px 10px -6px rgba(0, 0, 0, 0.062745098);
   box-shadow: 0 8px 10px -6px rgba(0, 0, 0, 0.062745098);
   background-color: #0f172a;
+  /* Réserver la place du menu avant son injection par JavaScript. */
+  min-height: 64px;
+  /* Conserver les propriétés déjà présentes. */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #0f172a;
 }
 .header__container {
-  width: 78vw;
+  /* Conserver une petite marge sur les côtés du mobile. */
+  width: calc(100% - 32px);
+  /* Empêcher le contenu de devenir trop large sur un grand écran. */
   max-width: 1280px;
+  /* Centrer horizontalement le conteneur. */
   margin-inline: auto;
   display: flex;
   justify-content: space-between;
@@ -1444,9 +1623,17 @@ footer {
 .logo .prospace-solutions {
   color: #ffffff;
   font-size: 18px;
-  font-weight: 900;
-  line-height: 28px;
-  text-align: center;
+  font-weight: 700;
+  line-height: 100%;
+  text-align: left;
+}
+.logo svg {
+  min-width: 32px;
+  min-height: 32px;
+}
+.logo:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 2px;
 }
 
 .prospace-solutions span span {
@@ -1479,6 +1666,10 @@ footer {
   background-color: rgba(255, 255, 255, 0.1254901961);
   color: #38bdf8;
 }
+.navigation a:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 2px;
+}
 .navigation li span {
   display: flex;
   flex-direction: row;
@@ -1493,16 +1684,33 @@ footer {
   font-weight: 600;
 }
 
+.menu-burger {
+  display: none;
+}
+
 @media (max-width: 480px) {
   .header__container,
   .navigation ul {
-    flex-direction: column;
+    flex-direction: row;
     width: unset;
     max-width: 480px;
     height: unset;
+    padding: 5px;
   }
   .header .logo {
-    padding: 10px 0 20px;
+    padding-top: 5px;
+  }
+  .header .navigation a, .logo {
+    font-size: 0.85rem;
+    line-height: 90%;
+    padding: 5px;
+    gap: 4;
+  }
+  .logo .prospace-solutions {
+    line-height: 100%;
+  }
+  section.filtre {
+    /* position: static; */
   }
 }
 /* ================================================= */
@@ -1510,8 +1718,323 @@ footer {
 /* ================================================= */
 /* Réservé à la structure générale de l'accueil si elle devient partagée */
 /* ================================================= */
-/* === SECTIONS PROPRES À LA PAGE MES ESPACES === */
+/* === POLICES ET TEXTES GÉNÉRAUX === */
 /* ================================================= */
+/* ================================================= */
+/* === BANNIÈRE DE LA PAGE D'ACCUEIL === */
+/* ================================================= */
+/* Présenter la page des espaces sauvegardés. */
+/* Créer le fond clair et conserver suffisamment de hauteur. */
+.main-mes-espaces {
+  min-height: 70vh;
+  padding-block: 48px 64px;
+  background-color: #f8fafc;
+}
+
+/* Limiter la largeur conformément à la maquette. */
+.mes-espaces__container {
+  /* Conserver une petite marge sur les côtés du mobile. */
+  width: calc(100% - 32px);
+  /* Empêcher le contenu de devenir trop large sur un grand écran. */
+  max-width: 1280px;
+  /* Centrer horizontalement le conteneur. */
+  margin-inline: auto;
+  max-width: 976px;
+}
+
+/* Empiler le titre et le bouton sur les petits écrans. */
+.mes-espaces__header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+/* Mettre en valeur le titre principal. */
+.mes-espaces__header h1 {
+  margin: 0;
+  color: #0f172a;
+  font-size: clamp(1.75rem, 5vw, 2.25rem);
+  line-height: 1.2;
+}
+
+/* Présenter le compteur comme une information secondaire. */
+.mes-espaces__count {
+  margin-top: 8px;
+  color: #64748b;
+}
+
+/* Présenter le bouton général comme une action dangereuse. */
+.mes-espaces__clear {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  display: inline-flex;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 10px;
+  background-color: #ffffff;
+  color: #d32f2f;
+  cursor: pointer;
+  min-height: 44px;
+  border: 1px solid #d32f2f;
+  background-color: transparent;
+  font-weight: 600;
+}
+
+/* Montrer clairement le survol du bouton général. */
+.mes-espaces__clear:hover {
+  background-color: rgba(211, 47, 47, 0.08);
+}
+
+/* Dimensionner l’icône de suppression. */
+.mes-espaces__clear img {
+  width: 18px;
+  height: 18px;
+}
+
+/* Ranger toutes les cartes les unes sous les autres. */
+.favoris-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 16px;
+}
+
+/* Occuper toute la largeur disponible sur mobile. */
+.favorite-card {
+  -webkit-box-shadow: 0 3px 10px 0 rgba(15, 23, 42, 0.12);
+  -moz-box-shadow: 0 3px 10px 0 rgba(15, 23, 42, 0.12);
+  box-shadow: 0 3px 10px 0 rgba(15, 23, 42, 0.12);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: none;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background-color: #ffffff;
+}
+
+/* Créer le cadre de la photographie mobile. */
+.favorite-card__image-wrapper {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 210px;
+  overflow: hidden;
+}
+
+/* Recadrer la photographie sans la déformer. */
+.favorite-card__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Empiler les informations et les actions sur mobile. */
+.favorite-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+  padding: 24px;
+}
+
+/* Permettre au texte d’occuper la place disponible. */
+.favorite-card__information {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Présenter le titre comme dans la maquette. */
+.favorite-card__title {
+  margin: 0 0 8px;
+  color: #0f172a;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* Aligner la ville avec son icône. */
+.favorite-card__location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  color: #475569;
+  font-size: 0.9rem;
+}
+
+/* Dimensionner les petites icônes informatives. */
+.favorite-card__location img,
+.favorite-card__capacity img {
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+}
+
+/* Regrouper la capacité, le prix et la note. */
+.favorite-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-top: 16px;
+  color: #64748b;
+  font-size: 0.875rem;
+}
+
+/* Aligner la capacité et son icône. */
+.favorite-card__capacity {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Mettre le prix en évidence. */
+.favorite-card__price strong {
+  color: #0284c7;
+  font-size: 1rem;
+}
+
+/* Aligner les étoiles et le nombre d’avis. */
+.favorite-card__rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Colorer les étoiles comme dans la maquette. */
+.favorite-card__stars {
+  color: #a16207;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+/* Empiler les boutons sur les écrans étroits. */
+.favorite-card__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Présenter le lien bleu principal. */
+.favorite-card__view {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  display: inline-flex;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 10px;
+  background-color: #0284c7;
+  color: #ffffff;
+  cursor: pointer;
+  min-height: 44px;
+  border-radius: 20px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Assombrir le lien au survol. */
+.favorite-card__view:hover {
+  background-color: #0369a1;
+}
+
+/* Présenter le bouton Retirer avec une bordure rouge. */
+.favorite-card__remove {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  display: inline-flex;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 10px;
+  background-color: #ffffff;
+  color: #d32f2f;
+  cursor: pointer;
+  min-height: 44px;
+  border: 1px solid #d32f2f;
+  border-radius: 20px;
+  background-color: #ffffff;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Colorer légèrement le bouton au survol. */
+.favorite-card__remove:hover {
+  background-color: rgba(211, 47, 47, 0.08);
+}
+
+/* Montrer clairement le focus du clavier. */
+.favorite-card__view:focus-visible,
+.favorite-card__remove:focus-visible {
+  outline: 3px solid #38bdf8;
+  outline-offset: 3px;
+}
+
+.favoris-list .card-espace-wrapper {
+  flex-direction: row;
+  width: 100%;
+  min-width: 100%;
+}
+
+.favoris-list .card-image-wrapper {
+  position: relative;
+  height: 100%;
+  object-fit: cover;
+  height: unset;
+  max-width: 200px;
+}
+
+.favoris-list .card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Passer aux grandes cartes horizontales de la maquette. */
+@media (min-width: 795px) {
+  .favorite-card {
+    flex-direction: row;
+    min-height: 136px;
+  }
+  /* Garder une photographie fixe à gauche. */
+  .favorite-card__image-wrapper {
+    flex: 0 0 208px;
+    width: 208px;
+    height: auto;
+    min-height: 136px;
+  }
+  /* Placer le contenu au centre et les actions à droite. */
+  .favorite-card__body {
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+    padding: 20px;
+  }
+  /* Conserver la plus grande largeur pour les informations. */
+  .favorite-card__information {
+    flex: 1 1 auto;
+  }
+  /* Aligner les boutons sur une seule ligne. */
+  .favorite-card__actions {
+    flex: 0 0 auto;
+    flex-direction: row;
+    align-items: center;
+    margin-left: auto;
+  }
+}
 /* Styles propres à une page */
 /* ================================================= */
 /* === POLICES ET TEXTES GÉNÉRAUX === */
@@ -1529,6 +2052,22 @@ section.catalogue {
   align-items: center;
   gap: 0;
   background-color: #f8fafc;
+  padding-bottom: 64px;
+}
+section.catalogue h2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 0;
+  color: #0f172a;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  /**/
+  width: 100%;
+  max-width: 78vw;
+  padding: 64px 24px 0;
 }
 
 .catalogue__container {
@@ -1538,7 +2077,7 @@ section.catalogue {
   align-items: center;
   gap: 0;
   max-width: 78vw;
-  padding: 56px 24px;
+  padding: 25px 24px 0;
 }
 
 .catalogue__wrapper {
@@ -1567,6 +2106,10 @@ section.catalogue {
     max-width: 480px;
     height: unset;
   }
+  section.catalogue h2 {
+    align-items: start;
+    padding-left: 0;
+  }
 }
 /* Outils visibles dans le CSS final */
 /* ================================================= */
@@ -1584,6 +2127,9 @@ section.catalogue {
 /* === BANNIÈRE DE LA PAGE D'ACCUEIL === */
 /* ================================================= */
 /* ================================================= */
+/* === POLICES ET TEXTES GÉNÉRAUX === */
+/* ================================================= */
+/* ================================================= */
 /* === CLASSES D'AIDE === */
 /* ================================================= */
 .sr-only {
@@ -1596,6 +2142,24 @@ section.catalogue {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+/* Cacher le lien d'évitement jusqu'à sa sélection avec le clavier. */
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 2000;
+  padding: 8px 16px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  color: #0f172a;
+  transform: translateY(-150%);
+  /* Afficher le lien lorsqu'il reçoit le focus du clavier. */
+}
+.skip-link:focus {
+  transform: translateY(0);
+  outline: 3px solid #38bdf8;
 }
 
 /*# sourceMappingURL=styles.css.map */
